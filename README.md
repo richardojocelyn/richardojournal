@@ -1,0 +1,2 @@
+# richardojournal
+journal trade
