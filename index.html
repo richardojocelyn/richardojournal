@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richardo Journal | Elite Sniper Ecosystem</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+
+    <style>
+        /* Typography & Base */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
+            background-color: #020005; /* Super Deep Dark */
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Deep Purple to Black Gradient Background */
+        .bg-universe {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(100% 100% at 50% 0%, rgba(30, 0, 51, 0.8) 0%, rgba(5, 0, 10, 0.9) 50%, #000000 100%);
+        }
+
+        /* Grid Pattern (Tech Vibe) */
+        .bg-grid {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+        }
+
+        /* Orbs Animasi */
+        .glow-orb-purple {
+            position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+            filter: blur(60px); z-index: -1; border-radius: 50%;
+            animation: float-slow 8s infinite alternate;
+        }
+        .glow-orb-cyan {
+            position: absolute; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.1) 0%, transparent 70%);
+            filter: blur(60px); z-index: -1; border-radius: 50%;
+            animation: float-slow 10s infinite alternate-reverse;
+        }
+
+        @keyframes float-slow {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(-50px) translateX(30px); }
+        }
+
+        /* GLASSMORPHISM CORE */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-panel:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(168, 85, 247, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(168, 85, 247, 0.15);
+        }
+
+        /* Gradasi Teks */
+        .text-gradient {
+            background: linear-gradient(90deg, #a855f7, #00e5ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Image Placeholder Mac Style */
+        .mac-image-container {
+            background: #050505;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        /* Animasi Baru */
+        .reveal { opacity: 0; transform: translateY(40px); }
+        
+        #cursor-blur {
+            height: 300px; width: 300px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 60%);
+            position: fixed; pointer-events: none; z-index: -1; transform: translate(-50%, -50%);
+            filter: blur(40px);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cursor-blur"></div>
+    <div class="bg-universe"></div>
+    <div class="bg-grid"></div>
+
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 reveal">
+        <div class="max-w-7xl mx-auto glass-panel !rounded-full px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="https://i.ibb.co.com/Vcw3YxNq/image.png" alt="Logo" class="w-8 h-8 rounded-full object-cover shadow-[0_0_15px_rgba(168,85,247,0.4)]">
+                <div class="text-lg font-black tracking-tighter">RICHARDO <span class="text-purple-400">JOURNAL</span></div>
+            </div>
+            <div class="hidden md:flex gap-8 text-sm font-semibold text-gray-400">
+                <a href="#dashboard" class="hover:text-white transition">Dashboard</a>
+                <a href="#accounts" class="hover:text-white transition">Multi-Account</a>
+                <a href="#export" class="hover:text-white transition">Social Export</a>
+            </div>
+            <button class="bg-white text-black px-5 py-2 rounded-full text-sm font-bold hover:bg-gray-200 transition shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                Launch App
+            </button>
+        </div>
+    </nav>
+
+    <section class="relative pt-48 pb-32 px-6 max-w-7xl mx-auto flex flex-col items-center text-center">
+        <div class="glow-orb-purple top-0 left-[20%]"></div>
+        <div class="glow-orb-cyan bottom-0 right-[20%]"></div>
+
+        <div class="reveal glass-panel !rounded-full px-5 py-2 mb-8 inline-flex items-center gap-3">
+            <i class="fas fa-crosshairs text-purple-400"></i>
+            <span class="text-xs font-bold tracking-widest text-gray-300 uppercase">Built for Sniper Traders</span>
+        </div>
+        
+        <h1 class="reveal text-6xl md:text-8xl font-black leading-tight mb-6 tracking-tighter">
+            Stop Trading Blind.<br>
+            <span class="text-gradient italic">Master Your Execution.</span>
+        </h1>
+        
+        <p class="reveal text-gray-400 text-lg md:text-xl max-w-2xl mb-12 leading-relaxed">
+            Lebih dari sekadar pencatat P&L. Ini adalah sistem komprehensif untuk membentuk disiplin, melacak SOP, dan mengamankan Prop-Firm challenge lu.
+        </p>
+
+        <div class="reveal flex gap-4">
+            <a href="#features" class="bg-gradient-to-r from-purple-600 to-cyan-600 px-8 py-4 rounded-full font-bold text-white shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:scale-105 transition">Explore Features</a>
+        </div>
+    </section>
+
+    <div id="features" class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent my-10"></div>
+
+    <section id="dashboard" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row items-center gap-16">
+            <div class="w-full md:w-1/2">
+                <div class="reveal text-purple-400 text-sm font-bold tracking-widest uppercase mb-2">01 / The Mission Control</div>
+                <h2 class="reveal text-4xl md:text-5xl font-black mb-6">Elite Dashboard</h2>
+                <p class="reveal text-gray-400 text-lg mb-8 leading-relaxed">
+                    Pantau detak jantung trading lu secara real-time. Semua metrik krusial disajikan dalam satu layar kaca yang estetik.
+                </p>
+                <ul class="space-y-4">
+                    <li class="reveal flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg glass-panel flex justify-center items-center text-purple-400 shrink-0"><i class="fas fa-chart-pie"></i></div>
+                        <div>
+                            <h4 class="font-bold text-white">Real-time Stats</h4>
+                            <p class="text-sm text-gray-400">Kalkulasi presisi untuk Total P&L, Win Rate, dan Profit Factor.</p>
+                        </div>
+                    </li>
+                    <li class="reveal flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg glass-panel flex justify-center items-center text-cyan-400 shrink-0"><i class="fas fa-chart-line"></i></div>
+                        <div>
+                            <h4 class="font-bold text-white">Equity Curve</h4>
+                            <p class="text-sm text-gray-400">Visualisasi pergerakan saldo dinamis ala prop-firm dashboard.</p>
+                        </div>
+                    </li>
+                    <li class="reveal flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg glass-panel flex justify-center items-center text-yellow-400 shrink-0"><i class="fas fa-calendar-day"></i></div>
+                        <div>
+                            <h4 class="font-bold text-white">Daily Recap</h4>
+                            <p class="text-sm text-gray-400">Ringkasan harian untuk mengetahui kapan saat yang tepat untuk "stop trade".</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="reveal w-full md:w-1/2 relative tilt-element">
+                <div class="absolute -inset-4 bg-purple-600/20 blur-2xl rounded-full z-0"></div>
+                <div class="glass-panel p-4 relative z-10">
+                    <div class="mac-image-container">
+                        <div class="bg-[#1a1a24] h-8 flex items-center px-4 gap-2 border-b border-white/5">
+                            <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div><div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div><div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1000&auto=format&fit=crop" class="w-full h-[350px] object-cover opacity-60" alt="Dashboard Preview">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="accounts" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row-reverse items-center gap-16">
+            <div class="w-full md:w-1/2">
+                <div class="reveal text-cyan-400 text-sm font-bold tracking-widest uppercase mb-2">02 / Portfolio Management</div>
+                <h2 class="reveal text-4xl md:text-5xl font-black mb-6">Prop-Firm Ready</h2>
+                <p class="reveal text-gray-400 text-lg mb-8 leading-relaxed">
+                    Jangan biarkan challenge lu gagal karena salah hitung. Monitor akun lu seperti seorang fund manager profesional.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="reveal glass-panel p-6">
+                        <i class="fas fa-layer-group text-3xl text-purple-400 mb-4"></i>
+                        <h4 class="font-bold text-white mb-2">Account Types</h4>
+                        <p class="text-sm text-gray-400">Pisahkan database Personal, Challenge, dan Forward Testing dengan rapi.</p>
+                    </div>
+                    <div class="reveal glass-panel p-6">
+                        <i class="fas fa-shield-halved text-3xl text-cyan-400 mb-4"></i>
+                        <h4 class="font-bold text-white mb-2">Drawdown HUD</h4>
+                        <p class="text-sm text-gray-400">Progress bar khusus untuk lacak Max Daily Drawdown dan Profit Target.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal w-full md:w-1/2 relative tilt-element">
+                <div class="absolute -inset-4 bg-cyan-600/20 blur-2xl rounded-full z-0"></div>
+                <div class="glass-panel p-4 relative z-10">
+                    <div class="mac-image-container">
+                        <div class="bg-[#1a1a24] h-8 flex items-center px-4 gap-2 border-b border-white/5">
+                            <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div><div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div><div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                        </div>
+                        <div class="p-8 bg-[#0a0a0f] h-[350px] flex flex-col gap-4">
+                            <div class="glass-panel p-4 rounded-xl border-l-4 border-l-cyan-400">
+                                <div class="text-xs text-gray-500 mb-1">PROFIT TARGET (8%)</div>
+                                <div class="w-full bg-black/50 h-3 rounded-full"><div class="bg-cyan-400 h-3 rounded-full w-[65%]"></div></div>
+                            </div>
+                            <div class="glass-panel p-4 rounded-xl border-l-4 border-l-red-500">
+                                <div class="text-xs text-gray-500 mb-1">DAILY DRAWDOWN (5%)</div>
+                                <div class="w-full bg-black/50 h-3 rounded-full"><div class="bg-red-500 h-3 rounded-full w-[20%]"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="export" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="reveal text-4xl md:text-5xl font-black mb-4">The Sniper Execution.</h2>
+            <p class="reveal text-gray-400 text-lg">Catat. Evaluasi. Pamerkan dengan gaya.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="reveal glass-panel p-8 md:col-span-2 relative overflow-hidden">
+                <i class="fas fa-book-open text-8xl text-white/5 absolute -bottom-4 -right-4"></i>
+                <h3 class="text-2xl font-bold mb-4 text-white">Smart Trading Journal</h3>
+                <div class="space-y-4 relative z-10">
+                    <div>
+                        <h4 class="font-bold text-purple-400">10-Row Pagination</h4>
+                        <p class="text-sm text-gray-400">Tampilan bersih tanpa lag, diload per 10 baris biar browser tetep enteng.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-cyan-400">SOP & Model Tagging</h4>
+                        <p class="text-sm text-gray-400">Setiap trade wajib dilabeli (SMC, ICT, SnD) buat evaluasi strategi mana yang paling gacor.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-yellow-400">Chart Attachments</h4>
+                        <p class="text-sm text-gray-400">Upload bukti screenshot Before/After execution langsung ke dalam row.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal glass-panel p-8 flex flex-col items-center justify-center text-center">
+                <i class="fas fa-camera-retro text-5xl text-purple-400 mb-6"></i>
+                <h3 class="text-xl font-bold mb-3 text-white">Verified Trade Card</h3>
+                <p class="text-sm text-gray-400 mb-6">One-Click Export. Ubah data trade jadi gambar estetik ala Binance. Sudah tersinkron otomatis dengan foto profil dan title lu.</p>
+                <div class="w-full bg-gradient-to-r from-green-500/20 to-transparent border border-green-500/30 p-3 rounded-lg text-green-400 text-xs font-bold font-mono">
+                    + $1,250.00 (WIN)
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 max-w-7xl mx-auto border-t border-white/10">
+        <div class="reveal glass-panel p-12 text-center rounded-[40px] relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent"></div>
+            <i class="fas fa-lock text-5xl text-gray-300 mb-6 relative z-10"></i>
+            <h2 class="text-3xl font-black mb-4 relative z-10">100% Local. 100% Yours.</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto mb-8 relative z-10">
+                Data trading lu adalah rahasia dapur. Richardo Journal menggunakan arsitektur <strong>Local Storage Protection</strong>. Tidak ada server, tidak ada database cloud yang bisa diintip. Lengkap dengan fitur <strong>Backup & Restore (.json)</strong>.
+            </p>
+            <div class="flex justify-center gap-6 relative z-10">
+                <div class="flex items-center gap-2"><i class="fas fa-check-circle text-cyan-400"></i> <span class="text-sm font-bold">Identity System</span></div>
+                <div class="flex items-center gap-2"><i class="fas fa-check-circle text-cyan-400"></i> <span class="text-sm font-bold">Encrypted JSON</span></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="reveal py-12 border-t border-white/5 text-center bg-black/50">
+        <div class="text-2xl font-black tracking-tighter text-white/20 mb-4">RICARDO JOURNAL</div>
+        <p class="text-gray-500 text-xs font-bold tracking-[0.3em] uppercase mb-4">"Always Know What U Do"</p>
+        <p class="text-gray-700 text-xs">© 2026 Crafted specifically for Elite Snipers.</p>
+    </footer>
+
+    <script>
+        // 1. Lenis Smooth Scroll Engine (Base Config)
+        const lenis = new Lenis({
+            duration: 1.5, // Dikin lebih lambat dikit biar makin cinematic
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // ==========================================
+        // FITUR BARU 1: SUPER SMOOTH ANCHOR LINK
+        // ==========================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault(); // Matiin lompatan kasar bawaan HTML
+                const target = this.getAttribute('href');
+                
+                // Pindah pake engine Lenis biar kayak meluncur
+                lenis.scrollTo(target, {
+                    duration: 2, 
+                    easing: (t) => 1 - Math.pow(1 - t, 4) // Efek rem mendadak halus di akhir
+                });
+            });
+        });
+
+        // 2. Kursor Cahaya yang Ngikutin Mouse
+        const blur = document.getElementById('cursor-blur');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(blur, { x: e.clientX, y: e.clientY, duration: 0.8, ease: "power2.out" });
+        });
+
+        // ==========================================
+        // FITUR BARU 2: REPEAT ANIMATION (TIDAK CUMA 1X)
+        // ==========================================
+        gsap.registerPlugin(ScrollTrigger);
+        
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach((el, i) => {
+            // Kita pake fromTo biar state awalnya ke-reset terus
+            gsap.fromTo(el, 
+                { opacity: 0, y: 50 }, // Posisi awal (Ngilang & di bawah)
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 85%", 
+                        // MAGIC-NYA DI SINI: "play none none reverse"
+                        // Artinya: Mainkan pas turun, biarin pas di tengah, REVERSE (ulang mundur) pas lu scroll ke atas lagi!
+                        toggleActions: "play none none reverse" 
+                    }
+                }
+            );
+        });
+
+        // 4. Efek 3D Tilt buat Mac Mockup
+        const tiltElements = document.querySelectorAll('.tilt-element');
+        tiltElements.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const { left, top, width, height } = card.getBoundingClientRect();
+                const x = (e.clientX - left) / width - 0.5;
+                const y = (e.clientY - top) / height - 0.5;
+                gsap.to(card, {
+                    rotationY: x * 15, 
+                    rotationX: -y * 15, 
+                    transformPerspective: 1000,
+                    duration: 0.5,
+                    ease: "power1.out"
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, { rotationY: 0, rotationX: 0, duration: 0.8, ease: "power3.out" });
+            });
+        });
+    </script>
+</body>
+</html>
