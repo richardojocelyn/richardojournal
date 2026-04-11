@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -304,6 +305,31 @@
     </footer>
 
     <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+            // Blokir Shortcut Keyboard Bahaya (VERSI REVISI SUPER KETAT)
+            document.onkeydown = function(e) {
+                // Kita paksa semua tombol yang ditekan dibaca jadi huruf kecil
+                const key = e.key.toLowerCase(); 
+                
+                if (
+                    e.key === 'F12' || 
+                    (e.ctrlKey && e.shiftKey && key === 'i') || // Inspect
+                    (e.ctrlKey && e.shiftKey && key === 'c') || // Inspect element
+                    (e.ctrlKey && e.shiftKey && key === 'j') || // Console
+                    (e.ctrlKey && key === 'u') ||               // View Source (UDAH DIKUNCI!)
+                    (e.ctrlKey && key === 's')                  // Save Page As
+                ) {
+                    e.preventDefault();
+                    return false;
+                }
+            };
+
+            // Jebakan Debugger (Bikin Chrome-nya nyangkut kalau nekat buka DevTools)
+            setInterval(function() {
+                debugger;
+            }, 100);
+            
         // 1. Lenis Smooth Scroll Engine (Base Config)
         const lenis = new Lenis({
             duration: 1.5, // Dikin lebih lambat dikit biar makin cinematic
