@@ -107,11 +107,27 @@
             position: fixed; pointer-events: none; z-index: -1; transform: translate(-50%, -50%);
             filter: blur(40px);
         }
+
+        #cursor-aura {
+            height: 500px;
+            width: 500px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+            position: fixed;
+            pointer-events: none;
+            z-index: -2; /* Di bawah kursor utama biar makin deep */
+            transform: translate(-50%, -50%);
+            filter: blur(80px);
+            transition: opacity 0.5s ease;
+        }
+
+        /* Efek pas kursor keluar dari layar biar nggak nyangkut */
+        .hide-cursor { opacity: 0; }
     </style>
 </head>
 <body>
 
     <div id="cursor-blur"></div>
+    <div id="cursor-aura"></div>
     <div class="bg-universe"></div>
     <div class="bg-grid"></div>
 
@@ -125,10 +141,12 @@
                 <a href="#dashboard" class="hover:text-white transition">Dashboard</a>
                 <a href="#accounts" class="hover:text-white transition">Multi-Account</a>
                 <a href="#export" class="hover:text-white transition">Social Export</a>
+                <a href="#tutorial" class="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition hover:scale-105">Tutorial</a>
             </div>
             <a href="https://github.com/richardojocelyn/richardojournal/raw/refs/heads/main/Richardo%20Elite%20Journal-1.1.0%20Setup.exe?download=" class="inline-block bg-white text-black px-5 py-2 rounded-full text-sm font-bold hover:bg-gray-200 transition shadow-[0_0_15px_rgba(255,255,255,0.2)]">
                 Launch App
             </a>
+            
     </nav>
 
     <section class="relative pt-48 pb-32 px-6 max-w-7xl mx-auto flex flex-col items-center text-center">
@@ -151,6 +169,7 @@
 
         <div class="reveal flex gap-4">
             <a href="#features" class="bg-gradient-to-r from-purple-600 to-cyan-600 px-8 py-4 rounded-full font-bold text-white shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:scale-105 transition">Explore Features</a>
+            <a href="#tutorial" class="glass-panel px-8 py-4 rounded-full font-bold text-white hover:bg-white/10 hover:border-purple-500/50 hover:scale-105 transition">Read Tutorial</a>
         </div>
     </section>
 
@@ -298,6 +317,46 @@
         </div>
     </section>
 
+    <div id="tutorial" class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent my-20"></div>
+
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <div class="reveal glass-panel !rounded-full px-4 py-1 mb-4 inline-flex items-center gap-2 mx-auto">
+                <span class="text-[10px] font-bold tracking-[0.2em] text-purple-400 uppercase">Step by Step Guide</span>
+            </div>
+            <h2 class="reveal text-4xl md:text-5xl font-black mb-4">How to Get <span class="text-gradient">Started.</span></h2>
+            <p class="reveal text-gray-400 text-lg">Panduan singkat buat instalasi dan optimasi jurnal lu.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="reveal glass-panel p-8 relative overflow-hidden group">
+                <div class="absolute -right-4 -top-4 text-8 font-black text-white/5 group-hover:text-purple-500/10 transition-all duration-500" style="font-size: 120px;">01</div>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-purple-600/20 flex items-center justify-center text-purple-400 border border-purple-500/30">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">Instalasi Aman</h3>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                    Setelah klik <b>Launch App</b>, Windows mungkin munculin peringatan <i>SmartScreen</i>. Klik <b>"More info"</b> lalu <b>"Run anyway"</b>. Ini aman karena aplikasi indie belum punya sertifikat berbayar.
+                </p>
+            </div>
+
+            <div class="reveal glass-panel p-8 relative overflow-hidden group">
+                <div class="absolute -right-4 -top-4 text-8 font-black text-white/5 group-hover:text-cyan-500/10 transition-all duration-500" style="font-size: 120px;">02</div>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-600/20 flex items-center justify-center text-cyan-400 border border-cyan-500/30">
+                        <i class="fas fa-pen-nib"></i>
+                    </div>
+                    <h3 class="text-xl font-bold">Master Your Journal</h3>
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                    Pilih akun (Challenge/Personal), input Pair (NQ/ES), dan pasang tag strategi lu (AMT/SMC). Jangan lupa upload screenshot chart buat bahan evaluasi di akhir minggu!
+                </p>
+            </div>
+        </div>
+    </section>
+
     <footer class="reveal py-12 border-t border-white/5 text-center bg-black/50">
         <div class="text-2xl font-black tracking-tighter text-white/20 mb-4">RICARDO JOURNAL</div>
         <p class="text-gray-500 text-xs font-bold tracking-[0.3em] uppercase mb-4">"Always Know What U Do"</p>
@@ -364,8 +423,44 @@
 
         // 2. Kursor Cahaya yang Ngikutin Mouse
         const blur = document.getElementById('cursor-blur');
+        const aura = document.getElementById('cursor-aura');
+
         document.addEventListener('mousemove', (e) => {
-            gsap.to(blur, { x: e.clientX, y: e.clientY, duration: 0.8, ease: "power2.out" });
+            // 1. Kursor utama (Ngikut cepet)
+            gsap.to(blur, { 
+                x: e.clientX, 
+                y: e.clientY, 
+                duration: 0.3, 
+                ease: "power2.out" 
+            });
+
+            // 2. Aura Belakang (Ngikut lebih lambat/lag biar estetik)
+            gsap.to(aura, { 
+                x: e.clientX, 
+                y: e.clientY, 
+                duration: 1.2, // Lebih lama biar ada efek ekor/aura
+                ease: "power3.out" 
+            });
+        });
+
+        // FITUR MAHAL: Efek Klik (Pulse)
+        document.addEventListener('mousedown', () => {
+            gsap.to([blur, aura], { scale: 1.5, opacity: 0.5, duration: 0.2 });
+        });
+        document.addEventListener('mouseup', () => {
+            gsap.to([blur, aura], { scale: 1, opacity: 1, duration: 0.5, ease: "elastic.out(1, 0.3)" });
+        });
+
+        // FITUR MAGNETIS: Kursor gede pas kena tombol/link
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                gsap.to(blur, { scale: 2, backgroundColor: "rgba(0, 229, 255, 0.3)", duration: 0.3 });
+                gsap.to(aura, { scale: 1.2, duration: 0.3 });
+            });
+            el.addEventListener('mouseleave', () => {
+                gsap.to(blur, { scale: 1, backgroundColor: "rgba(168, 85, 247, 0.2)", duration: 0.3 });
+                gsap.to(aura, { scale: 1, duration: 0.3 });
+            });
         });
 
         // ==========================================
