@@ -15,7 +15,7 @@ export default async function handler(req, res) {
             body: JSON.stringify({
                 transaction_details: {
                     order_id: 'RJ-' + Date.now(),
-                    gross_amount: 50000
+                    gross_amount: 25000
                 },
                 // Simpen di sini
                 customer_details: { email: email },

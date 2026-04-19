@@ -184,7 +184,7 @@ payButton.onclick = async function () {
     payButton.innerText = "Loading...";
 
     try {
-        const response = await fetch('/api/checkout', {
+        const response = await fetch('https://richardo-journal.vercel.app/api/checkout', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: emailInput }) // KIRIM EMAIL KE BACKEND
