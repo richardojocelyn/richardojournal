@@ -1,21 +1,21 @@
 document.addEventListener('contextmenu', event => event.preventDefault());
 
 // Blokir Shortcut Keyboard Bahaya
-document.onkeydown = function(e) {
-    const key = e.key.toLowerCase(); 
+// document.onkeydown = function(e) {
+//     const key = e.key.toLowerCase(); 
     
-    if (
-        // e.key === 'F12' || 
-        // (e.ctrlKey && e.shiftKey && key === 'i') || // Inspect
-        (e.ctrlKey && e.shiftKey && key === 'c') || // Inspect element
-        (e.ctrlKey && e.shiftKey && key === 'j') || // Console
-        (e.ctrlKey && key === 'u') ||               // View Source
-        (e.ctrlKey && key === 's')                  // Save Page As
-    ) {
-        e.preventDefault();
-        return false;
-    }
-};
+//     if (
+//         // e.key === 'F12' || 
+//         // (e.ctrlKey && e.shiftKey && key === 'i') || // Inspect
+//         (e.ctrlKey && e.shiftKey && key === 'c') || // Inspect element
+//         (e.ctrlKey && e.shiftKey && key === 'j') || // Console
+//         (e.ctrlKey && key === 'u') ||               // View Source
+//         (e.ctrlKey && key === 's')                  // Save Page As
+//     ) {
+//         e.preventDefault();
+//         return false;
+//     }
+// };
 
 // ⚠️ MATIKAN DULU SEMENTARA PAS LAGI NGE-TEST BIAR WEB LU GAK FREEZE!
 // setInterval(function() {
@@ -170,10 +170,12 @@ function closeModal() {
 // ==========================================
 // BUNGKUS KE DALAM DOMContentLoaded (YANG BENERAN)
 // ==========================================
+// ==========================================
+// BUNGKUS KE DALAM DOMContentLoaded
+// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     const payButton = document.getElementById('pay-button');
 
-    // Cek dulu tombolnya ada apa kaga di halaman ini
     if (payButton) {
         payButton.onclick = async function () {
             const emailInput = document.getElementById('user-email').value;
@@ -186,15 +188,20 @@ document.addEventListener('DOMContentLoaded', () => {
             payButton.innerText = "Loading...";
 
             try {
-                // GANTI JADI '/api/checkout' BIAR NYAMBUNG SAMA DOMAIN BARU
                 const response = await fetch('/api/checkout', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: emailInput }) // KIRIM EMAIL KE BACKEND
+                    body: JSON.stringify({ email: emailInput }) 
                 });
                 
+                // CEK KALAU SERVER VERCEL ERROR (Misal: 404 atau 500)
+                if (!response.ok) {
+                    throw new Error(`Server Error: ${response.status}`);
+                }
+
                 const data = await response.json();
 
+                // CEK APAKAH TOKEN BENERAN ADA
                 if (data.token) {
                     payButton.innerText = "PROCEED TO PAYMENT";
                     window.snap.pay(data.token, {
@@ -202,12 +209,19 @@ document.addEventListener('DOMContentLoaded', () => {
                             window.location.href = '/success.html?order=' + result.order_id;
                         }
                     });
+                } else {
+                    // KALAU BACKEND JALAN, TAPI MIDTRANS GAK NGASIH TOKEN
+                    payButton.innerText = "PROCEED TO PAYMENT";
+                    alert("Waduh, Midtrans gak ngasih token nih! Coba cek Vercel Logs lu.");
                 }
+
             } catch (error) {
                 payButton.innerText = "PROCEED TO PAYMENT";
-                alert("Ada yang salah nih, coba cek koneksi atau inspect element!");
+                alert("Gagal konek ke API: " + error.message);
                 console.error(error);
             }
         };
+    } else {
+        alert("Tombol pay-button gak ketemu di HTML bro!");
     }
 });
