@@ -168,40 +168,46 @@ function closeModal() {
 }
 
 // ==========================================
-// KITA BUNGKUS KE DALAM DOMContentLoaded
-// Biar kodingan ini nunggu HTML beres diload dulu, baru nyari tombol
+// BUNGKUS KE DALAM DOMContentLoaded (YANG BENERAN)
 // ==========================================
-const payButton = document.getElementById('pay-button');
+document.addEventListener('DOMContentLoaded', () => {
+    const payButton = document.getElementById('pay-button');
 
-payButton.onclick = async function () {
-    const emailInput = document.getElementById('user-email').value;
+    // Cek dulu tombolnya ada apa kaga di halaman ini
+    if (payButton) {
+        payButton.onclick = async function () {
+            const emailInput = document.getElementById('user-email').value;
 
-    if (!emailInput) {
-        alert("Email jangan dikosongin, Cad!");
-        return;
-    }
+            if (!emailInput) {
+                alert("Email jangan dikosongin, Cad!");
+                return;
+            }
 
-    payButton.innerText = "Loading...";
+            payButton.innerText = "Loading...";
 
-    try {
-        const response = await fetch('https://richardo-journal.vercel.app/api/checkout', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: emailInput }) // KIRIM EMAIL KE BACKEND
-        });
-        
-        const data = await response.json();
+            try {
+                // GANTI JADI '/api/checkout' BIAR NYAMBUNG SAMA DOMAIN BARU
+                const response = await fetch('/api/checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: emailInput }) // KIRIM EMAIL KE BACKEND
+                });
+                
+                const data = await response.json();
 
-        if (data.token) {
-            payButton.innerText = "PROCEED TO PAYMENT";
-            window.snap.pay(data.token, {
-                onSuccess: function(result) {
-                    window.location.href = '/success.html?order=' + result.order_id;
+                if (data.token) {
+                    payButton.innerText = "PROCEED TO PAYMENT";
+                    window.snap.pay(data.token, {
+                        onSuccess: function(result) {
+                            window.location.href = '/success.html?order=' + result.order_id;
+                        }
+                    });
                 }
-            });
-        }
-    } catch (error) {
-        payButton.innerText = "PROCEED TO PAYMENT";
-        console.error(error);
+            } catch (error) {
+                payButton.innerText = "PROCEED TO PAYMENT";
+                alert("Ada yang salah nih, coba cek koneksi atau inspect element!");
+                console.error(error);
+            }
+        };
     }
-};
+});
