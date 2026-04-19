@@ -26,7 +26,7 @@ async function getLicenseFromFirebase() {
     const key = doc.id; // Kode lisensinya (misal: RICAD-VIP-001)
 
     // Langsung kunci jadi SOLD biar gak direbut orang lain
-    await doc.ref.update({ status: 'ACTIVE' });
+    await doc.ref.update({ status: 'SOLD' });
 
     return key;
 }
