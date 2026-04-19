@@ -18,21 +18,35 @@
     </div>
 
     <script>
-        // Ambil Order ID dari URL (Misal: ?order=RJ-1700...)
+    document.addEventListener("DOMContentLoaded", async () => {
+        // 1. Ambil order_id dari URL (?order=RJ-xxxxx)
         const urlParams = new URLSearchParams(window.location.search);
         const orderId = urlParams.get('order');
 
-        if (orderId) {
-            // Potong ambil angkanya doang, terus racik jadi Kunci Lisensi
-            const angkaOrder = orderId.replace('RJ-', '');
-            // Hasilnya jadi misal: PRO-170054321-GACOR
-            const kunciUnik = "PRO-" + angkaOrder + "-GACOR"; 
-            
-            document.getElementById('kode-lisensi').innerText = kunciUnik;
-        } else {
-            document.getElementById('kode-lisensi').innerText = "KODE TIDAK VALID";
-            document.getElementById('kode-lisensi').style.color = "red";
+        const textElemen = document.getElementById("kode-lisensi");
+
+        if (!orderId) {
+            textElemen.innerText = "ORDER ID TIDAK VALID";
+            return;
         }
-    </script>
+
+        try {
+            // 2. Minta Vercel ngecek statusnya
+            const response = await fetch(`/api/status?order=${orderId}`);
+            const data = await response.json();
+
+            // 3. Tampilkan kodenya kalau berhasil
+            if (response.ok && data.licenseKey) {
+                textElemen.innerText = data.licenseKey;
+                // Opsional: Bikin efek warna ijo biar estetik
+                textElemen.style.color = "#4ade80"; 
+            } else {
+                textElemen.innerText = "MENUNGGU PEMBAYARAN...";
+            }
+        } catch (error) {
+            textElemen.innerText = "ERROR KONEKSI SERVER";
+        }
+    });
+</script>
 </body>
 </html>
