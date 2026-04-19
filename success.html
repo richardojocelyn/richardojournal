@@ -13,8 +13,26 @@
         <h1>✅ PEMBAYARAN BERHASIL!</h1>
         <p>Thanks bro udah support Richardo Journal.</p>
         <p>Ini License Key lu, simpen baik-baik:</p>
-        <div class="license">RJ-PRO-GACOR-2026</div>
+        <div class="license" id="kode-lisensi">MEMUAT KODE...</div>
         <button onclick="window.location.href='/'" style="padding:10px; cursor:pointer;">Balik ke Web</button>
     </div>
+
+    <script>
+        // Ambil Order ID dari URL (Misal: ?order=RJ-1700...)
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('order');
+
+        if (orderId) {
+            // Potong ambil angkanya doang, terus racik jadi Kunci Lisensi
+            const angkaOrder = orderId.replace('RJ-', '');
+            // Hasilnya jadi misal: PRO-170054321-GACOR
+            const kunciUnik = "PRO-" + angkaOrder + "-GACOR"; 
+            
+            document.getElementById('kode-lisensi').innerText = kunciUnik;
+        } else {
+            document.getElementById('kode-lisensi').innerText = "KODE TIDAK VALID";
+            document.getElementById('kode-lisensi').style.color = "red";
+        }
+    </script>
 </body>
 </html>

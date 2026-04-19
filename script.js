@@ -197,7 +197,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     window.snap.pay(data.token, {
                         onSuccess: function(result) {
                             console.log("ANJAY MABAR SUKSES!");
-                            window.location.href = '/success.html';
+                            // Kita bawa Order ID-nya ke halaman success!
+                            window.location.href = '/success.html?order=' + result.order_id;
                         },
                         onPending: function(result) {
                             alert("Selesaikan pembayaran lu dulu di M-Banking/ATM ya, Cad!");
