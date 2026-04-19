@@ -1,381 +1,389 @@
-/* Typography & Base */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
-            background-color: #020005; /* Super Deep Dark */
-            color: #ffffff;
-            overflow-x: hidden;
-        }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
+    background-color: #020005; /* Super Deep Dark */
+    color: #ffffff;
+    overflow-x: hidden;
+}
 
-        /* Deep Purple to Black Gradient Background */
-        .bg-universe {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: -1;
-            background: 
-                radial-gradient(100% 100% at 50% 0%, rgba(30, 0, 51, 0.8) 0%, rgba(5, 0, 10, 0.9) 50%, #000000 100%);
-        }
+/* Deep Purple to Black Gradient Background */
+.bg-universe {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -1;
+    background: 
+        radial-gradient(100% 100% at 50% 0%, rgba(30, 0, 51, 0.8) 0%, rgba(5, 0, 10, 0.9) 50%, #000000 100%);
+}
 
-        /* Grid Pattern (Tech Vibe) */
-        .bg-grid {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
-            background-image: 
-                linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 40px 40px;
-            mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
-            -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
-        }
+/* Grid Pattern (Tech Vibe) */
+.bg-grid {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
+    background-image: 
+        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+}
 
-        /* Orbs Animasi */
-        .glow-orb-purple {
-            position: absolute; width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
-            filter: blur(60px); z-index: -1; border-radius: 50%;
-            animation: float-slow 8s infinite alternate;
-        }
-        .glow-orb-cyan {
-            position: absolute; width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(0, 229, 255, 0.1) 0%, transparent 70%);
-            filter: blur(60px); z-index: -1; border-radius: 50%;
-            animation: float-slow 10s infinite alternate-reverse;
-        }
+/* Orbs Animasi */
+.glow-orb-purple {
+    position: absolute; width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+    filter: blur(60px); z-index: -1; border-radius: 50%;
+    animation: float-slow 8s infinite alternate;
+}
+.glow-orb-cyan {
+    position: absolute; width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.1) 0%, transparent 70%);
+    filter: blur(60px); z-index: -1; border-radius: 50%;
+    animation: float-slow 10s infinite alternate-reverse;
+}
 
-        @keyframes float-slow {
-            0% { transform: translateY(0) translateX(0); }
-            100% { transform: translateY(-50px) translateX(30px); }
-        }
+@keyframes float-slow {
+    0% { transform: translateY(0) translateX(0); }
+    100% { transform: translateY(-50px) translateX(30px); }
+}
 
-        /* GLASSMORPHISM CORE */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            border-left: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+/* GLASSMORPHISM CORE */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
 
-        .glass-panel:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(168, 85, 247, 0.4);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(168, 85, 247, 0.15);
-        }
+.glass-panel:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(168, 85, 247, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(168, 85, 247, 0.15);
+}
 
-        /* Gradasi Teks */
-        .text-gradient {
-            background: linear-gradient(90deg, #a855f7, #00e5ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+/* Gradasi Teks */
+.text-gradient {
+    background: linear-gradient(90deg, #a855f7, #00e5ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-        /* Image Placeholder Mac Style */
-        .mac-image-container {
-            background: #050505;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-        }
+/* Image Placeholder Mac Style */
+.mac-image-container {
+    background: #050505;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+}
 
-        /* Animasi Baru */
-        .reveal { opacity: 0; transform: translateY(40px); }
-        
-        #cursor-blur {
-            height: 300px; width: 300px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 60%);
-            position: fixed; pointer-events: none; z-index: -1; transform: translate(-50%, -50%);
-            filter: blur(40px);
-        }
+/* Animasi Baru */
+.reveal { opacity: 0; transform: translateY(40px); }
 
-        #cursor-aura {
-            height: 500px;
-            width: 500px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
-            position: fixed;
-            pointer-events: none;
-            z-index: -2; /* Di bawah kursor utama biar makin deep */
-            transform: translate(-50%, -50%);
-            filter: blur(80px);
-            transition: opacity 0.5s ease;
-        }
+#cursor-blur {
+    height: 300px; width: 300px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 60%);
+    position: fixed; pointer-events: none; z-index: -1; transform: translate(-50%, -50%);
+    filter: blur(40px);
+}
 
-        /* Efek pas kursor keluar dari layar biar nggak nyangkut */
-        .hide-cursor { opacity: 0; }
+#cursor-aura {
+    height: 500px;
+    width: 500px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+    position: fixed;
+    pointer-events: none;
+    z-index: -2; /* Di bawah kursor utama biar makin deep */
+    transform: translate(-50%, -50%);
+    filter: blur(80px);
+    transition: opacity 0.5s ease;
+}
 
-        /* Bungkusan luar buat nahan overflow dan ngasih efek bayangan di pinggir */
-        .elite-marquee-wrapper {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-            padding: 40px 0;
-            margin: 30px 0;
-        }
+/* Efek pas kursor keluar dari layar biar nggak nyangkut */
+.hide-cursor { opacity: 0; }
 
-        /* Efek bayangan gelap (fade) di kiri dan kanan biar gesernya smooth ngilang */
-        .elite-marquee-wrapper::before,
-        .elite-marquee-wrapper::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            width: 150px;
-            height: 100%;
-            z-index: 2;
-            pointer-events: none;
-        }
-        .elite-marquee-wrapper::before {
-            left: 0;
-            background: linear-gradient(to right, #0d0d12 0%, transparent 100%); /* Sesuai warna background dashboard lu */
-        }
-        .elite-marquee-wrapper::after {
-            right: 0;
-            background: linear-gradient(to left, #0d0d12 0%, transparent 100%);
-        }
+/* Bungkusan luar buat nahan overflow dan ngasih efek bayangan di pinggir */
+.elite-marquee-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 40px 0;
+    margin: 30px 0;
+}
 
-        /* Track yang bakal jalan terus ke kiri */
-        .elite-marquee-track {
-            display: flex;
-            gap: 20px; /* Jarak antar card */
-            width: max-content;
-            /* Kecepatan geser 30 detik, linear biar stabil, infinite biar gak putus */
-            animation: infinite-scroll 30s linear infinite;
-        }
+/* Efek bayangan gelap (fade) di kiri dan kanan biar gesernya smooth ngilang */
+.elite-marquee-wrapper::before,
+.elite-marquee-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+.elite-marquee-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, #0d0d12 0%, transparent 100%); /* Sesuai warna background dashboard lu */
+}
+.elite-marquee-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, #0d0d12 0%, transparent 100%);
+}
 
-        /* Kalau di-hover mouse, dia berhenti bentar biar user bisa baca */
-        .elite-marquee-wrapper:hover .elite-marquee-track {
-            animation-play-state: paused;
-        }
+/* Track yang bakal jalan terus ke kiri */
+.elite-marquee-track {
+    display: flex;
+    gap: 20px; /* Jarak antar card */
+    width: max-content;
+    /* Kecepatan geser 30 detik, linear biar stabil, infinite biar gak putus */
+    animation: infinite-scroll 30s linear infinite;
+}
 
-        /* DESAIN GLASSMORPHISM 3D GACOR */
-        .glass-review-card {
-            width: 320px;
-            padding: 25px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            
-            /* Border ala kaca 3D (terang di atas/kiri, gelap di bawah) */
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            border-left: 1px solid rgba(255, 255, 255, 0.15);
-            
-            /* Efek melayang 3D */
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), border-color 0.4s ease;
-        }
+/* Kalau di-hover mouse, dia berhenti bentar biar user bisa baca */
+.elite-marquee-wrapper:hover .elite-marquee-track {
+    animation-play-state: paused;
+}
 
-        .glass-review-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(0, 229, 255, 0.4);
-            box-shadow: 0 20px 40px rgba(0, 229, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        }
+/* DESAIN GLASSMORPHISM 3D GACOR */
+.glass-review-card {
+    width: 320px;
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    
+    /* Border ala kaca 3D (terang di atas/kiri, gelap di bawah) */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    
+    /* Efek melayang 3D */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), border-color 0.4s ease;
+}
 
-        /* Animasi Pergeserannya */
-        @keyframes infinite-scroll {
-            0% { transform: translateX(0); }
-            /* Geser persis setengah dari total panjang konten, biar pas nyambung gak patah */
-            100% { transform: translateX(calc(-50% - 10px)); } 
-        }
+.glass-review-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(0, 229, 255, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 229, 255, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
 
-        /* --- ELITE 3D GLASS EFFECT --- */
-        .glass-3d-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            border-left: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-            transform-style: preserve-3d;
-        }
+/* Animasi Pergeserannya */
+@keyframes infinite-scroll {
+    0% { transform: translateX(0); }
+    /* Geser persis setengah dari total panjang konten, biar pas nyambung gak patah */
+    100% { transform: translateX(calc(-50% - 10px)); } 
+}
 
-        .glass-3d-card:hover {
-            transform: translateY(-10px) rotateX(2deg) rotateY(-2deg);
-            box-shadow: 0 40px 80px rgba(168, 85, 247, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            border-color: rgba(168, 85, 247, 0.4);
-        }
+/* --- ELITE 3D GLASS EFFECT --- */
+.glass-3d-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform-style: preserve-3d;
+}
 
-        /* --- INTERACTIVE LIST ITEM --- */
-        .feature-item {
-            padding: 16px;
-            border-radius: 16px;
-            transition: all 0.4s ease;
-            border: 1px solid transparent;
-            background: transparent;
-        }
-        
-        .feature-item:hover {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(0, 229, 255, 0.1);
-            transform: translateX(10px);
-            box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.2);
-        }
+.glass-3d-card:hover {
+    transform: translateY(-10px) rotateX(2deg) rotateY(-2deg);
+    box-shadow: 0 40px 80px rgba(168, 85, 247, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-color: rgba(168, 85, 247, 0.4);
+}
 
-        .feature-icon-box {
-            background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent);
-            box-shadow: inset 0 1px 1px rgba(255,255,255,0.2);
-            transition: all 0.4s ease;
-        }
+/* --- INTERACTIVE LIST ITEM --- */
+.feature-item {
+    padding: 16px;
+    border-radius: 16px;
+    transition: all 0.4s ease;
+    border: 1px solid transparent;
+    background: transparent;
+}
 
-        .feature-item:hover .feature-icon-box.purple-glow {
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.6), inset 0 1px 1px rgba(255,255,255,0.4);
-            color: #fff;
-        }
-        .feature-item:hover .feature-icon-box.cyan-glow {
-            box-shadow: 0 0 20px rgba(0, 229, 255, 0.6), inset 0 1px 1px rgba(255,255,255,0.4);
-            color: #fff;
-        }
-        .feature-item:hover .feature-icon-box.yellow-glow {
-            box-shadow: 0 0 20px rgba(250, 204, 21, 0.6), inset 0 1px 1px rgba(255,255,255,0.4);
-            color: #fff;
-        }
+.feature-item:hover {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(0, 229, 255, 0.1);
+    transform: translateX(10px);
+    box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.2);
+}
 
-        /* Text gradient animasi */
-        .text-gradient-gacor {
-            background: linear-gradient(to right, #fff, #a855f7, #00e5ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% auto;
-            animation: shine 5s linear infinite;
-        }
+.feature-icon-box {
+    background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.2);
+    transition: all 0.4s ease;
+}
 
-        @keyframes shine {
-            to { background-position: 200% center; }
-        }
+.feature-item:hover .feature-icon-box.purple-glow {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.6), inset 0 1px 1px rgba(255,255,255,0.4);
+    color: #fff;
+}
+.feature-item:hover .feature-icon-box.cyan-glow {
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.6), inset 0 1px 1px rgba(255,255,255,0.4);
+    color: #fff;
+}
+.feature-item:hover .feature-icon-box.yellow-glow {
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.6), inset 0 1px 1px rgba(255,255,255,0.4);
+    color: #fff;
+}
 
-        /* Efek Gambar Melayang (Floating) */
-        .floating-img {
-            animation: float-img 6s ease-in-out infinite;
-        }
-        @keyframes float-img {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(1deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
+/* Text gradient animasi */
+.text-gradient-gacor {
+    background: linear-gradient(to right, #fff, #a855f7, #00e5ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: shine 5s linear infinite;
+}
 
-                /* --- ELITE 3D WALL STREET TICKER --- */
-        .ticker-wrapper {
-            width: 100%;
-            overflow: hidden;
-            background: linear-gradient(180deg, #050508 0%, #0a0a10 100%);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 2px solid rgba(0, 0, 0, 0.8);
-            box-shadow: inset 0 5px 15px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.5);
-            padding: 10px 0;
-            position: absolute;
-            top: 70px;
-            left: 0;
-            z-index: 40;
-        }
-        .ticker-track {
-            display: flex;
-            gap: 30px;
-            width: max-content;
-            animation: ticker-scroll 40s linear infinite;
-        }
-        .ticker-wrapper:hover .ticker-track {
-            animation-play-state: paused;
-        }
-        @keyframes ticker-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-50% - 15px)); } 
-        }
-        .ticker-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-family: 'SF Mono', 'Consolas', monospace; /* Font terminal */
-            font-size: 13px;
-            font-weight: 800;
-            padding: 6px 14px;
-            border-radius: 6px;
-            background: linear-gradient(145deg, rgba(20,20,30,0.8), rgba(5,5,10,0.9));
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5), 0 4px 8px rgba(0,0,0,0.4); /* Efek masuk ke dalam layar */
-            cursor: default;
-            transition: transform 0.2s;
-        }
-        .ticker-item:hover {
-            transform: scale(1.05);
-            border-color: rgba(168, 85, 247, 0.5);
-        }
-        .ticker-symbol { color: #8b8b99; letter-spacing: 1px; }
+@keyframes shine {
+    to { background-position: 200% center; }
+}
 
-        /* Status Warna Text Harga */
-        .price-neutral { color: #e5e7eb; transition: color 0.3s; }
-        .flash-up { color: #00ff88 !important; text-shadow: 0 0 12px rgba(0, 255, 136, 0.8); transition: none; }
-        .flash-down { color: #ff0055 !important; text-shadow: 0 0 12px rgba(255, 0, 85, 0.8); transition: none; }
+/* Efek Gambar Melayang (Floating) */
+.floating-img {
+    animation: float-img 6s ease-in-out infinite;
+}
+@keyframes float-img {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(1deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
 
-        /* Titik Merah Berkedip */
-        .live-dot {
-            width: 6px;
-            height: 6px;
-            background-color: #ff0055;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #ff0055;
-            animation: blink 1s infinite alternate;
-        }
-        @keyframes blink {
-            0% { opacity: 0.3; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1.2); }
-        }
-        
-        /* --- ELITE BACKGROUND AUTO-SCROLL (MARQUEE) --- */
-        .bg-auto-text-container {
-            /* Kita kasih opacity super kecil biar gak ganggu teks utama */
-            opacity: 0.03; /* Cuma 3% keliatan! */
-            mix-blend-mode: overlay; /* Biar nge-blend sama background gradient */
-        }
-        .bg-auto-text-track {
-            display: flex;
-            width: max-content;
-            /* Kita bikin jalannya super lambat: 120 detik per putaran! */
-            animation: bg-scroll-auto 120s linear infinite;
-        }
-        .bg-auto-text-item {
-            font-size: 250px; /* Teks Raksasa */
-            font-weight: 900;
-            text-transform: uppercase;
-            white-space: nowrap;
-            color: rgba(255, 255, 255, 0.4); /* Text tipis, bukan solid white */
-            letter-spacing: -5px; /* tracking super rapet ala web elite */
-            margin-right: 50px; /* Jarak antar duplikat */
-        }
+        /* --- ELITE 3D WALL STREET TICKER --- */
+.ticker-wrapper {
+    width: 100%;
+    overflow: hidden;
+    background: linear-gradient(180deg, #050508 0%, #0a0a10 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.8);
+    box-shadow: inset 0 5px 15px rgba(0,0,0,0.8), 0 10px 30px rgba(0,0,0,0.5);
+    padding: 10px 0;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    z-index: 40;
+}
+.ticker-track {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    animation: ticker-scroll 40s linear infinite;
+}
+.ticker-wrapper:hover .ticker-track {
+    animation-play-state: paused;
+}
+@keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 15px)); } 
+}
+.ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'SF Mono', 'Consolas', monospace; /* Font terminal */
+    font-size: 13px;
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: 6px;
+    background: linear-gradient(145deg, rgba(20,20,30,0.8), rgba(5,5,10,0.9));
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5), 0 4px 8px rgba(0,0,0,0.4); /* Efek masuk ke dalam layar */
+    cursor: default;
+    transition: transform 0.2s;
+}
+.ticker-item:hover {
+    transform: scale(1.05);
+    border-color: rgba(168, 85, 247, 0.5);
+}
+.ticker-symbol { color: #8b8b99; letter-spacing: 1px; }
 
-        /* Mesin Animasi Jalannya */
-        @keyframes bg-scroll-auto {
-            0% { transform: translateX(0); }
-            /* Geser separuh dari total panjang teks biar loopnya mulus */
-            100% { transform: translateX(calc(-50% - 25px)); }
-        }
+/* Status Warna Text Harga */
+.price-neutral { color: #e5e7eb; transition: color 0.3s; }
+.flash-up { color: #00ff88 !important; text-shadow: 0 0 12px rgba(0, 255, 136, 0.8); transition: none; }
+.flash-down { color: #ff0055 !important; text-shadow: 0 0 12px rgba(255, 0, 85, 0.8); transition: none; }
 
-                /* --- APPLE GLASSY TEXT GLOW --- */
-        .text-glassy-glow {
-            /* Bikin warna putihnya gak flat, tapi gradasi dari putih bersih ke abu-abu silver ala material kaca */
-            background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            
-            /* Glow putih yang nyebar luas tapi tipis (15% opacity), gak bikin pedih di mata */
-            filter: drop-shadow(0px 8px 32px rgba(255, 255, 255, 0.15));
-        }
+/* Titik Merah Berkedip */
+.live-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #ff0055;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #ff0055;
+    animation: blink 1s infinite alternate;
+}
+@keyframes blink {
+    0% { opacity: 0.3; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1.2); }
+}
 
-        .text-gradient-glassy {
-            /* Gradasi ungu ke cyan yang sama, tapi ditimpa efek clipping */
-            background: linear-gradient(90deg, #a855f7 0%, #00e5ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            
-            /* Glow ungu/cyan yang elegan buat ngangkat teks dari background gelap */
-            filter: drop-shadow(0px 8px 40px rgba(168, 85, 247, 0.35));
-        }
+/* --- ELITE BACKGROUND AUTO-SCROLL (MARQUEE) --- */
+.bg-auto-text-container {
+    /* Kita kasih opacity super kecil biar gak ganggu teks utama */
+    opacity: 0.03; /* Cuma 3% keliatan! */
+    mix-blend-mode: overlay; /* Biar nge-blend sama background gradient */
+}
+.bg-auto-text-track {
+    display: flex;
+    width: max-content;
+    /* Kita bikin jalannya super lambat: 120 detik per putaran! */
+    animation: bg-scroll-auto 120s linear infinite;
+}
+.bg-auto-text-item {
+    font-size: 250px; /* Teks Raksasa */
+    font-weight: 900;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.4); /* Text tipis, bukan solid white */
+    letter-spacing: -5px; /* tracking super rapet ala web elite */
+    margin-right: 50px; /* Jarak antar duplikat */
+}
+
+/* Mesin Animasi Jalannya */
+@keyframes bg-scroll-auto {
+    0% { transform: translateX(0); }
+    /* Geser separuh dari total panjang teks biar loopnya mulus */
+    100% { transform: translateX(calc(-50% - 25px)); }
+}
+
+        /* --- APPLE GLASSY TEXT GLOW --- */
+.text-glassy-glow {
+    /* Bikin warna putihnya gak flat, tapi gradasi dari putih bersih ke abu-abu silver ala material kaca */
+    background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Glow putih yang nyebar luas tapi tipis (15% opacity), gak bikin pedih di mata */
+    filter: drop-shadow(0px 8px 32px rgba(255, 255, 255, 0.15));
+}
+
+.text-gradient-glassy {
+    /* Gradasi ungu ke cyan yang sama, tapi ditimpa efek clipping */
+    background: linear-gradient(90deg, #a855f7 0%, #00e5ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Glow ungu/cyan yang elegan buat ngangkat teks dari background gelap */
+    filter: drop-shadow(0px 8px 40px rgba(168, 85, 247, 0.35));
+}
+
+@keyframes spin-neon {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.animate-spin-neon {
+    animation: spin-neon 3s linear infinite;
+}
