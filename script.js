@@ -17,10 +17,10 @@ document.onkeydown = function(e) {
     }
 };
 
-// Jebakan Debugger
-setInterval(function() {
-    debugger;
-}, 100);
+// ⚠️ MATIKAN DULU SEMENTARA PAS LAGI NGE-TEST BIAR WEB LU GAK FREEZE!
+// setInterval(function() {
+//     debugger;
+// }, 100);
 
 // Lenis Smooth Scroll Engine
 const lenis = new Lenis({
@@ -56,19 +56,8 @@ const blur = document.getElementById('cursor-blur');
 const aura = document.getElementById('cursor-aura');
 
 document.addEventListener('mousemove', (e) => {
-    gsap.to(blur, { 
-        x: e.clientX, 
-        y: e.clientY, 
-        duration: 0.3, 
-        ease: "power2.out" 
-    });
-
-    gsap.to(aura, { 
-        x: e.clientX, 
-        y: e.clientY, 
-        duration: 1.2, 
-        ease: "power3.out" 
-    });
+    gsap.to(blur, { x: e.clientX, y: e.clientY, duration: 0.3, ease: "power2.out" });
+    gsap.to(aura, { x: e.clientX, y: e.clientY, duration: 1.2, ease: "power3.out" });
 });
 
 document.addEventListener('mousedown', () => {
@@ -97,15 +86,8 @@ reveals.forEach((el, i) => {
     gsap.fromTo(el, 
         { opacity: 0, y: 50 }, 
         {
-            opacity: 1,
-            y: 0,
-            duration: 1.2,
-            ease: "power3.out",
-            scrollTrigger: {
-                trigger: el,
-                start: "top 85%", 
-                toggleActions: "play none none reverse" 
-            }
+            opacity: 1, y: 0, duration: 1.2, ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none reverse" }
         }
     );
 });
@@ -117,31 +99,18 @@ tiltElements.forEach(card => {
         const { left, top, width, height } = card.getBoundingClientRect();
         const x = (e.clientX - left) / width - 0.5;
         const y = (e.clientY - top) / height - 0.5;
-        gsap.to(card, {
-            rotationY: x * 15, 
-            rotationX: -y * 15, 
-            transformPerspective: 1000,
-            duration: 0.5,
-            ease: "power1.out"
-        });
+        gsap.to(card, { rotationY: x * 15, rotationX: -y * 15, transformPerspective: 1000, duration: 0.5, ease: "power1.out" });
     });
-
     card.addEventListener('mouseleave', () => {
         gsap.to(card, { rotationY: 0, rotationX: 0, duration: 0.8, ease: "power3.out" });
     });
 });
 
-// ==========================================
-// TRADINGVIEW LIVE TICKER ENGINE
-// ==========================================
+// TradingView Engine
 function initTradingViewTicker() {
     const container = document.getElementById("ticker-container");
-
-    // Biar gak ke-render dobel pas ganti tab
     if (container && container.innerHTML === "") { 
         container.className = "tradingview-widget-container";
-        
-        // STYLING TAMBAHAN: Paksa lebar 100% layar (100vw) biar edge-to-edge
         container.style.width = "100vw";
         container.style.overflow = "hidden";
         container.innerHTML = `<div class="tradingview-widget-container__widget"></div>`;
@@ -151,7 +120,6 @@ function initTradingViewTicker() {
         script.src = "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
         script.async = true;
 
-        // JSON Konfigurasi Pair TradingView
         script.innerHTML = JSON.stringify({
             "symbols": [
                 { "proName": "VANTAGE:NAS100FT", "title": "NQ FUTURES" },
@@ -163,113 +131,95 @@ function initTradingViewTicker() {
             ],
             "showSymbolLogo": true,
             "isTransparent": true,
-            "displayMode": "regular", // <-- INI KUNCINYA: Ganti dari adaptive jadi regular
+            "displayMode": "regular", 
             "colorTheme": "dark",
             "locale": "en"
         });
-
         container.appendChild(script);
     }
 }
 
-// --- SNIPER SCROLL PROGRESS ---
 gsap.to("#scroll-progress", {
-    width: "100%",
-    ease: "none",
-    scrollTrigger: {
-        trigger: document.body,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 0.3 // Bikin pergerakannya smooth ngikutin scroll
-    }
+    width: "100%", ease: "none",
+    scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 0.3 }
 });
 
-// --- BACKGROUND MASSIVE RIGHT-SCROLL (ONCE) ---
-// --- BACKGROUND MASSIVE RIGHT-SCROLL (CINEMATIC INFINITE) ---
 window.addEventListener('load', () => {
-    // 1. Kita bikin mesin utamanya: Jalan ke kanan SUPER LAMBAT dan INFINITE (Gigi 1)
     let bgAnim = gsap.fromTo("#bg-massive-text", 
-        { xPercent: -50 }, 
-        { 
-            xPercent: 0, 
-            duration: 150, // Durasi normalnya 150 detik (Sangat pelan)
-            ease: "none", 
-            repeat: -1 
-        }
+        { xPercent: -50 }, { xPercent: 0, duration: 150, ease: "none", repeat: -1 }
     );
-
-    // 2. MAGIC-NYA DI SINI: Kita manipulasi "Waktu" dari mesin di atas!
-    // Awalnya kita paksa jalan 40x lipat lebih cepet (Gigi 6), terus di-rem halus ke kecepatan normal (1x).
-    gsap.fromTo(bgAnim, 
-        { timeScale: 40 }, // Awal mula gaspol 40x lebih cepat
-        { 
-            timeScale: 1, // Turun pelan-pelan sampai kecepatan asli (1x)
-            duration: 8,  // Proses ngeremnya butuh waktu 8 detik
-            ease: "power3.out" // Efek rem hidrolik yang mulus banget
-        }
-    );
+    gsap.fromTo(bgAnim, { timeScale: 40 }, { timeScale: 1, duration: 8, ease: "power3.out" });
 });
+
 function openModal() {
     const modal = document.getElementById('payment-modal');
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
+    if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
 }
 
 function closeModal() {
     const modal = document.getElementById('payment-modal');
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
+    if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
 }
 
-// PENTING: Pastiin lu udah nangkep tombolnya! 
-// (Sesuaikan 'pay-button' dengan ID tombol di HTML lu)
-const payButton = document.getElementById('pay-button'); 
-
-payButton.onclick = async function () {
-    // 1. Alarm pertama: Tombol jalan gak?
-    console.log("🚀 Tombol dipencet! Minta token ke backend...");
+// ==========================================
+// KITA BUNGKUS KE DALAM DOMContentLoaded
+// Biar kodingan ini nunggu HTML beres diload dulu, baru nyari tombol
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
     
-    // Biar text tombol berubah pas loading (opsional)
-    payButton.innerText = "Loading..."; 
+    // Panggil TradingView
+    initTradingViewTicker();
 
-    try {
-        const response = await fetch('/api/checkout', { method: 'POST' });
-        const data = await response.json();
+    // Sekarang aman buat nyari tombol
+    const payButton = document.getElementById('pay-button'); 
 
-        // 2. Alarm kedua: Dapet apa dari Vercel?
-        console.log("📦 Balasan dari server:", data);
+    if (payButton) {
+        payButton.onclick = async function () {
+            console.log("🚀 Tombol dipencet! Minta token ke backend...");
+            const originalText = payButton.innerText;
+            payButton.innerText = "Loading..."; 
 
-        if (data.token) {
-            // Balikin text tombol
-            payButton.innerText = "PROCEED TO PAYMENT"; 
-            
-            // Panggil popup Midtrans
-            window.snap.pay(data.token, {
-                onSuccess: function(result) {
-                    console.log("ANJAY MABAR SUKSES!");
-                    window.location.href = '/success.html';
-                },
-                onPending: function(result) {
-                    alert("Selesaikan pembayaran lu dulu di M-Banking/ATM ya, Cad!");
-                },
-                onError: function(result) {
-                    alert("Waduh, pembayaran gagal! Coba lagi bro.");
-                },
-                onClose: function() {
-                    console.log("Popup ditutup sebelum kelar bayar.");
+            try {
+                const response = await fetch('/api/checkout', { method: 'POST' });
+                const data = await response.json();
+
+                console.log("📦 Balasan dari server:", data);
+
+                if (data.token) {
+                    payButton.innerText = originalText; 
+                    
+                    window.snap.pay(data.token, {
+                        onSuccess: function(result) {
+                            console.log("ANJAY MABAR SUKSES!");
+                            window.location.href = '/success.html';
+                        },
+                        onPending: function(result) {
+                            alert("Selesaikan pembayaran lu dulu di M-Banking/ATM ya, Cad!");
+                        },
+                        onError: function(result) {
+                            alert("Waduh, pembayaran gagal! Coba lagi bro.");
+                        },
+                        onClose: function() {
+                            console.log("Popup ditutup sebelum kelar bayar.");
+                        }
+                    });
+                } else {
+                    payButton.innerText = originalText; 
+                    alert("❌ Gagal dapet token! Cek tulisan merah di Inspect Element (Console).");
                 }
-            });
-        } else {
-            // Kalau token ga ada, pasti error!
-            payButton.innerText = "PROCEED TO PAYMENT"; 
-            alert("❌ Gagal dapet token! Cek tulisan merah di Inspect Element (Console).");
-        }
-    } catch (error) {
-        payButton.innerText = "PROCEED TO PAYMENT"; 
-        console.error("🔥 Error parah:", error);
-        alert("Server lagi puyeng, gagal nyambung ke checkout.js!");
+            } catch (error) {
+                payButton.innerText = originalText; 
+                console.error("🔥 Error parah:", error);
+                alert("Server lagi puyeng, gagal nyambung ke checkout.js!");
+            }
+        };
+    } else {
+        console.error("❌ ERROR: Tombol dengan id 'pay-button' KAGA KETEMU di HTML lu, Cad! Pastiin nama ID-nya bener.");
     }
-};
-
-// Jangan lupa baris ini biar scriptnya otomatis jalan pas web dibuka
-document.addEventListener("DOMContentLoaded", initTradingViewTicker);
+});
