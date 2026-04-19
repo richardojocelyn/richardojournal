@@ -1,52 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Payment Success - Richardo Journal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault Access Granted - Richardo Journal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background: #0f172a; color: white; font-family: sans-serif; text-align: center; padding: 50px; }
-        .card { background: #1e293b; padding: 30px; border-radius: 15px; display: inline-block; border: 1px solid #38bdf8; }
-        .license { font-size: 24px; color: #38bdf8; font-weight: bold; letter-spacing: 2px; margin: 20px 0; padding: 10px; border: 2px dashed #38bdf8; }
+        body { background-color: #020005; font-family: 'Inter', sans-serif; }
+        .glass-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .cyber-glitch { text-shadow: 0 0 10px rgba(0, 229, 255, 0.5); }
+        
+        /* Animasi radar loading */
+        @keyframes scan {
+            0% { background-position: 0 -100px; }
+            100% { background-position: 0 100px; }
+        }
+        .scanning {
+            background: linear-gradient(to bottom, transparent, rgba(0, 229, 255, 0.2), transparent);
+            background-size: 100% 200%;
+            animation: scan 2s linear infinite;
+        }
     </style>
 </head>
-<body>
-    <div class="card">
-        <h1>✅ PEMBAYARAN BERHASIL!</h1>
-        <p>Thanks bro udah support Richardo Journal.</p>
-        <p>Ini License Key lu, simpen baik-baik:</p>
-        <div class="license" id="kode-lisensi">MEMUAT KODE...</div>
-        <button onclick="window.location.href='/'" style="padding:10px; cursor:pointer;">Balik ke Web</button>
+<body class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden text-slate-300">
+
+    <div class="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none"></div>
+    <div class="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-cyan-600/20 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="relative z-10 w-full max-w-lg glass-panel rounded-3xl p-8 sm:p-12 text-center shadow-[0_0_60px_rgba(168,85,247,0.15)]">
+        
+        <div class="w-20 h-20 mx-auto bg-green-500/10 border border-green-500/30 rounded-2xl flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(34,197,94,0.2)]">
+            <i class="fas fa-check-double text-4xl text-green-400"></i>
+        </div>
+
+        <h1 class="text-3xl font-black text-white tracking-tight mb-2 uppercase">Payment <span class="text-green-400">Verified</span></h1>
+        <p class="text-sm text-slate-400 mb-8 tracking-wide">Akses ke Elite Sniper Ecosystem telah dibuka.</p>
+
+        <div class="relative bg-[#0a0a0f] border border-white/10 rounded-xl p-6 mb-8 overflow-hidden group">
+            <div id="scan-effect" class="absolute inset-0 scanning pointer-events-none opacity-50"></div>
+            
+            <p class="text-[10px] uppercase tracking-[0.3em] font-bold text-cyan-500 mb-3 relative z-10">
+                <i class="fas fa-key mr-2"></i>Your Private Vault Key
+            </p>
+            
+            <div id="kode-lisensi" class="font-mono text-xl sm:text-2xl font-bold text-white tracking-[0.1em] cyber-glitch relative z-10 break-all">
+                DECRYPTING NETWORK...
+            </div>
+        </div>
+
+        <p class="text-xs text-slate-500 mb-8">
+            <i class="fas fa-envelope mr-1"></i> Salinan lisensi dan panduan setup juga telah dikirim ke email Anda.
+        </p>
+
+        <button onclick="window.location.href='/'" class="w-full bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold py-4 px-6 rounded-xl transition-all hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] uppercase tracking-widest text-sm flex items-center justify-center gap-3 group">
+            <i class="fas fa-arrow-left text-slate-400 group-hover:-translate-x-1 transition-transform"></i>
+            Access Dashboard
+        </button>
     </div>
 
     <script>
-    document.addEventListener("DOMContentLoaded", async () => {
-        // 1. Ambil order_id dari URL (?order=RJ-xxxxx)
-        const urlParams = new URLSearchParams(window.location.search);
-        const orderId = urlParams.get('order');
+        document.addEventListener("DOMContentLoaded", async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderId = urlParams.get('order');
 
-        const textElemen = document.getElementById("kode-lisensi");
+            const textElemen = document.getElementById("kode-lisensi");
+            const scanEffect = document.getElementById("scan-effect");
 
-        if (!orderId) {
-            textElemen.innerText = "ORDER ID TIDAK VALID";
-            return;
-        }
-
-        try {
-            // 2. Minta Vercel ngecek statusnya
-            const response = await fetch(`/api/status?order=${orderId}`);
-            const data = await response.json();
-
-            // 3. Tampilkan kodenya kalau berhasil
-            if (response.ok && data.licenseKey) {
-                textElemen.innerText = data.licenseKey;
-                // Opsional: Bikin efek warna ijo biar estetik
-                textElemen.style.color = "#4ade80"; 
-            } else {
-                textElemen.innerText = "MENUNGGU PEMBAYARAN...";
+            if (!orderId) {
+                textElemen.innerText = "INVALID ORDER ID";
+                textElemen.classList.replace("text-white", "text-red-500");
+                scanEffect.style.display = "none";
+                return;
             }
-        } catch (error) {
-            textElemen.innerText = "ERROR KONEKSI SERVER";
-        }
-    });
-</script>
+
+            try {
+                // Minta Vercel ngecek statusnya
+                const response = await fetch(`/api/status?order=${orderId}`);
+                const data = await response.json();
+
+                // Tampilkan kodenya kalau berhasil
+                if (response.ok && data.licenseKey) {
+                    textElemen.innerText = data.licenseKey;
+                    textElemen.classList.replace("text-white", "text-cyan-400"); // Ganti warna jadi neon cyan
+                    scanEffect.style.display = "none"; // Matiin efek scan setelah dapet
+                } else {
+                    textElemen.innerText = "AWAITING CONFIRMATION...";
+                }
+            } catch (error) {
+                textElemen.innerText = "CONNECTION FAILED";
+                textElemen.classList.replace("text-white", "text-red-500");
+                scanEffect.style.display = "none";
+            }
+        });
+    </script>
 </body>
 </html>
