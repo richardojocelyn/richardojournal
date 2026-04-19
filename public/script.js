@@ -1,21 +1,21 @@
-document.addEventListener('contextmenu', event => event.preventDefault());
+// document.addEventListener('contextmenu', event => event.preventDefault());
 
-// Blokir Shortcut Keyboard Bahaya
-document.onkeydown = function(e) {
-    const key = e.key.toLowerCase(); 
+// // Blokir Shortcut Keyboard Bahaya
+// document.onkeydown = function(e) {
+//     const key = e.key.toLowerCase(); 
     
-    if (
-        // e.key === 'F12' || 
-        // (e.ctrlKey && e.shiftKey && key === 'i') || // Inspect
-        (e.ctrlKey && e.shiftKey && key === 'c') || // Inspect element
-        (e.ctrlKey && e.shiftKey && key === 'j') || // Console
-        (e.ctrlKey && key === 'u') ||               // View Source
-        (e.ctrlKey && key === 's')                  // Save Page As
-    ) {
-        e.preventDefault();
-        return false;
-    }
-};
+//     if (
+//         e.key === 'F12' || 
+//         (e.ctrlKey && e.shiftKey && key === 'i') || // Inspect
+//         (e.ctrlKey && e.shiftKey && key === 'c') || // Inspect element
+//         (e.ctrlKey && e.shiftKey && key === 'j') || // Console
+//         (e.ctrlKey && key === 'u') ||               // View Source
+//         (e.ctrlKey && key === 's')                  // Save Page As
+//     ) {
+//         e.preventDefault();
+//         return false;
+//     }
+// };
 
 // ⚠️ MATIKAN DULU SEMENTARA PAS LAGI NGE-TEST BIAR WEB LU GAK FREEZE!
 // setInterval(function() {
