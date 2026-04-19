@@ -198,7 +198,7 @@ payButton.onclick = async function () {
             payButton.innerText = "PROCEED TO PAYMENT";
             window.snap.pay(data.token, {
                 onSuccess: function(result) {
-                    window.location.href = '/success.html';
+                    window.location.href = '/success.html?order=' + result.order_id;
                 },
                 onPending: function(result) {
                     alert("Selesaikan pembayaran di M-Banking lu ya!");
