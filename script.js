@@ -221,51 +221,55 @@ function closeModal() {
     modal.classList.remove('flex');
 }
 
-payButton.onclick = async function () {
-    // Tombol diklik, kita minta token ke backend
-    const response = await fetch('/api/checkout', { method: 'POST' });
-    const data = await response.json();
+// PENTING: Pastiin lu udah nangkep tombolnya! 
+// (Sesuaikan 'pay-button' dengan ID tombol di HTML lu)
+const payButton = document.getElementById('pay-button'); 
 
-    if (data.token) {
-        // Munculin popup Midtrans
-        window.snap.pay(data.token, {
-            onSuccess: function(result) {
-                // ANJAY MABAR! Pembayaran sukses, langsung lempar ke halaman Lisensi
-                window.location.href = '/success.html';
-            },
-            onPending: function(result) {
-                // Kalo user pilih VA, ingetin suruh transfer
-                alert("Selesaikan pembayaran lu dulu di M-Banking/ATM ya, Cad!");
-            },
-            onError: function(result) {
-                alert("Waduh, pembayaran gagal! Coba lagi bro.");
-            },
-            onClose: function() {
-                // Kalo user iseng silang popupnya
-                console.log("Popup ditutup sebelum kelar bayar.");
-            }
-        });
+payButton.onclick = async function () {
+    // 1. Alarm pertama: Tombol jalan gak?
+    console.log("🚀 Tombol dipencet! Minta token ke backend...");
+    
+    // Biar text tombol berubah pas loading (opsional)
+    payButton.innerText = "Loading..."; 
+
+    try {
+        const response = await fetch('/api/checkout', { method: 'POST' });
+        const data = await response.json();
+
+        // 2. Alarm kedua: Dapet apa dari Vercel?
+        console.log("📦 Balasan dari server:", data);
+
+        if (data.token) {
+            // Balikin text tombol
+            payButton.innerText = "PROCEED TO PAYMENT"; 
+            
+            // Panggil popup Midtrans
+            window.snap.pay(data.token, {
+                onSuccess: function(result) {
+                    console.log("ANJAY MABAR SUKSES!");
+                    window.location.href = '/success.html';
+                },
+                onPending: function(result) {
+                    alert("Selesaikan pembayaran lu dulu di M-Banking/ATM ya, Cad!");
+                },
+                onError: function(result) {
+                    alert("Waduh, pembayaran gagal! Coba lagi bro.");
+                },
+                onClose: function() {
+                    console.log("Popup ditutup sebelum kelar bayar.");
+                }
+            });
+        } else {
+            // Kalau token ga ada, pasti error!
+            payButton.innerText = "PROCEED TO PAYMENT"; 
+            alert("❌ Gagal dapet token! Cek tulisan merah di Inspect Element (Console).");
+        }
+    } catch (error) {
+        payButton.innerText = "PROCEED TO PAYMENT"; 
+        console.error("🔥 Error parah:", error);
+        alert("Server lagi puyeng, gagal nyambung ke checkout.js!");
     }
 };
-
-// Fungsi buat ngecek status tanpa butuh file notification.js
-async function cekStatusPembayaran(orderId) {
-    const interval = setInterval(async () => {
-        // Kita nanya langsung ke Midtrans via backend checkout
-        // Tapi sementara ini, cara paling gampang buat lu adalah:
-        console.log("Lagi ngecek status pembayaran untuk: " + orderId);
-        
-        // Lu bisa arahin user buat klik tombol "Cek Lisensi" setelah bayar
-        // Atau pake cara manual di bawah
-    }, 5000);
-}
-
-function tampilkanLicense() {
-    alert("PEMBAYARAN SUKSES! Ini License Key lu: RJ-PRO-12345");
-    // Lu bisa ganti alert ini dengan munculin modal atau teks di web
-    const licenseBox = document.getElementById('license-display');
-    licenseBox.innerText = "RJ-PRO-12345";
-}
 
 // Jangan lupa baris ini biar scriptnya otomatis jalan pas web dibuka
 document.addEventListener("DOMContentLoaded", initTradingViewTicker);
