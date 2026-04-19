@@ -5,8 +5,8 @@ document.onkeydown = function(e) {
     const key = e.key.toLowerCase(); 
     
     if (
-        e.key === 'F12' || 
-        (e.ctrlKey && e.shiftKey && key === 'i') || // Inspect
+        // e.key === 'F12' || 
+        // (e.ctrlKey && e.shiftKey && key === 'i') || // Inspect
         (e.ctrlKey && e.shiftKey && key === 'c') || // Inspect element
         (e.ctrlKey && e.shiftKey && key === 'j') || // Console
         (e.ctrlKey && key === 'u') ||               // View Source
