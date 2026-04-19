@@ -1,25 +1,12 @@
-// api/checkout.js
 export default async function handler(req, res) {
-    // Tambahin header biar bisa diakses dari frontend mana aja (CORS)
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST');
+    const serverKey = process.env.MIDTRANS_SERVER_KEY;
 
-    if (req.method !== 'POST') {
-        return res.status(405).json({ message: 'Gunakan method POST, Cad!' });
+    if (!serverKey) {
+        return res.status(500).json({ error: "Server Key kaga ada di Vercel, Cad!" });
     }
 
-    // --- PASTIIN INI UDAH LU GANTI PAKE SERVER KEY SANDBOX ASLI ---
-    const serverKey = process.env.MIDTRANS_SERVER_KEY;
-    
+    // Auth string Midtrans: ServerKey + ":" di-encode ke Base64
     const authString = Buffer.from(serverKey + ':').toString('base64');
-
-    const payload = {
-        transaction_details: {
-            order_id: 'RJ-' + Date.now(), // Pake timestamp biar ID-nya gak bakal duplikat
-            gross_amount: 50000
-        },
-        credit_card: { secure: true }
-    };
 
     try {
         const response = await fetch('https://app.sandbox.midtrans.com/snap/v1/transactions', {
@@ -29,14 +16,21 @@ export default async function handler(req, res) {
                 'Accept': 'application/json',
                 'Authorization': `Basic ${authString}`
             },
-            body: JSON.stringify(payload)
+            body: JSON.stringify({
+                transaction_details: {
+                    order_id: 'RJ-' + Date.now(),
+                    gross_amount: 50000
+                },
+                credit_card: { secure: true }
+            })
         });
 
         const data = await response.json();
         
-        // Kalau Midtrans kasih error (misal Key salah), kirim pesannya ke kita
         if (!response.ok) {
-            return res.status(response.status).json({ errorFromMidtrans: data });
+            // INI PENTING: Liat pesan error dari Midtrans di console Vercel
+            console.log("Midtrans Ngamuk:", data); 
+            return res.status(response.status).json(data);
         }
 
         return res.status(200).json(data);
