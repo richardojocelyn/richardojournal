@@ -1,11 +1,8 @@
 export default async function handler(req, res) {
-    if (req.method !== 'POST') return res.status(405).json({ error: "Harus POST" });
+    if (req.method !== 'POST') return res.status(405).send("Method Not Allowed");
 
+    const { email } = req.body; // Nangkep email dari script.js
     const serverKey = process.env.MIDTRANS_SERVER_KEY;
-    const { email } = req.body; 
-
-    if (!serverKey) return res.status(500).json({ error: "Server Key kaga ada!" });
-
     const authString = Buffer.from(serverKey + ':').toString('base64');
 
     try {
@@ -13,26 +10,23 @@ export default async function handler(req, res) {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
                 'Authorization': `Basic ${authString}`
             },
             body: JSON.stringify({
                 transaction_details: {
                     order_id: 'RJ-' + Date.now(),
-                    gross_amount: 25000
+                    gross_amount: 50000
                 },
-                customer_details: {
-                    email: email 
-                },
-                // INI TRIKNYA: Titip email di brankas anti-hilang Midtrans
-                custom_field1: email, 
-                enabled_payments: ["qris", "bank_transfer"]
+                // Simpen di sini
+                customer_details: { email: email },
+                // DAN PAKSA SIMPEN DI SINI (Buat dibaca webhook)
+                custom_field1: email 
             })
         });
 
         const data = await response.json();
-        return res.status(200).json(data);
+        res.status(200).json(data);
     } catch (error) {
-        return res.status(500).json({ error: error.message });
+        res.status(500).json({ error: error.message });
     }
 }

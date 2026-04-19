@@ -177,19 +177,17 @@ payButton.onclick = async function () {
     const emailInput = document.getElementById('user-email').value;
 
     if (!emailInput) {
-        alert("Emailnya jangan kosong dong brok! Ntar lisensinya dikirim kemana?");
+        alert("Email jangan dikosongin, Cad!");
         return;
     }
 
-    // Ubah text tombol biar keliatan mikir
     payButton.innerText = "Loading...";
 
     try {
-        // CUMA SATU KALI FETCH AJA
         const response = await fetch('/api/checkout', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: emailInput }) 
+            body: JSON.stringify({ email: emailInput }) // KIRIM EMAIL KE BACKEND
         });
         
         const data = await response.json();
@@ -199,21 +197,11 @@ payButton.onclick = async function () {
             window.snap.pay(data.token, {
                 onSuccess: function(result) {
                     window.location.href = '/success.html?order=' + result.order_id;
-                },
-                onPending: function(result) {
-                    alert("Selesaikan pembayaran di M-Banking lu ya!");
-                },
-                onError: function(result) {
-                    alert("Pembayaran gagal!");
                 }
             });
-        } else {
-            payButton.innerText = "PROCEED TO PAYMENT";
-            alert("Gagal dapet token! Cek koneksi.");
         }
     } catch (error) {
         payButton.innerText = "PROCEED TO PAYMENT";
-        alert("Server lagi puyeng brok!");
         console.error(error);
     }
 };
