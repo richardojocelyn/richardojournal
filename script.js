@@ -171,56 +171,44 @@ function closeModal() {
 // KITA BUNGKUS KE DALAM DOMContentLoaded
 // Biar kodingan ini nunggu HTML beres diload dulu, baru nyari tombol
 // ==========================================
-document.addEventListener("DOMContentLoaded", () => {
-    
-    // Panggil TradingView
-    initTradingViewTicker();
+const payButton = document.getElementById('pay-button');
 
-    // Sekarang aman buat nyari tombol
-    const payButton = document.getElementById('pay-button'); 
+payButton.onclick = async function () {
+    const emailInput = document.getElementById('user-email').value;
 
-    if (payButton) {
-        payButton.onclick = async function () {
-            console.log("🚀 Tombol dipencet! Minta token ke backend...");
-            const originalText = payButton.innerText;
-            payButton.innerText = "Loading..."; 
-
-            try {
-                const response = await fetch('/api/checkout', { method: 'POST' });
-                const data = await response.json();
-
-                console.log("📦 Balasan dari server:", data);
-
-                if (data.token) {
-                    payButton.innerText = originalText; 
-                    
-                    window.snap.pay(data.token, {
-                        onSuccess: function(result) {
-                            console.log("ANJAY MABAR SUKSES!");
-                            // Kita bawa Order ID-nya ke halaman success!
-                            window.location.href = '/success.html?order=' + result.order_id;
-                        },
-                        onPending: function(result) {
-                            alert("Selesaikan pembayaran lu dulu di M-Banking/ATM ya, Cad!");
-                        },
-                        onError: function(result) {
-                            alert("Waduh, pembayaran gagal! Coba lagi bro.");
-                        },
-                        onClose: function() {
-                            console.log("Popup ditutup sebelum kelar bayar.");
-                        }
-                    });
-                } else {
-                    payButton.innerText = originalText; 
-                    alert("❌ Gagal dapet token! Cek tulisan merah di Inspect Element (Console).");
-                }
-            } catch (error) {
-                payButton.innerText = originalText; 
-                console.error("🔥 Error parah:", error);
-                alert("Server lagi puyeng, gagal nyambung ke checkout.js!");
-            }
-        };
-    } else {
-        console.error("❌ ERROR: Tombol dengan id 'pay-button' KAGA KETEMU di HTML lu, Cad! Pastiin nama ID-nya bener.");
+    // Cek dulu emailnya kosong atau kaga
+    if (!emailInput) {
+        alert("Woi Cad, masukin email lu dulu biar lisensinya bisa dikirim!");
+        return;
     }
-});
+
+    payButton.innerText = "Loading...";
+
+    try {
+        // Kirim emailnya ke backend checkout lu
+        const response = await fetch('/api/checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: emailInput }) 
+        });
+        const data = await response.json();
+
+        if (data.token) {
+            payButton.innerText = "PROCEED TO PAYMENT";
+            window.snap.pay(data.token, {
+                onSuccess: function(result) {
+                    window.location.href = '/success.html';
+                },
+                onPending: function(result) {
+                    alert("Selesaikan pembayaran di M-Banking lu ya!");
+                },
+                onError: function(result) {
+                    alert("Pembayaran gagal!");
+                }
+            });
+        }
+    } catch (error) {
+        payButton.innerText = "PROCEED TO PAYMENT";
+        alert("Server lagi puyeng!");
+    }
+};

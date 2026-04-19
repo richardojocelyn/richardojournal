@@ -1,11 +1,12 @@
 export default async function handler(req, res) {
+    if (req.method !== 'POST') return res.status(405).json({ error: "Harus POST" });
+
     const serverKey = process.env.MIDTRANS_SERVER_KEY;
+    // Nangkep email dari script.js tadi
+    const { email } = req.body; 
 
-    if (!serverKey) {
-        return res.status(500).json({ error: "Server Key kaga ada di Vercel, Cad!" });
-    }
+    if (!serverKey) return res.status(500).json({ error: "Server Key kaga ada!" });
 
-    // Auth string Midtrans: ServerKey + ":" di-encode ke Base64
     const authString = Buffer.from(serverKey + ':').toString('base64');
 
     try {
@@ -21,18 +22,15 @@ export default async function handler(req, res) {
                     order_id: 'RJ-' + Date.now(),
                     gross_amount: 50000
                 },
-                credit_card: { secure: true }
+                // INI PENTING: Titip email ke Midtrans
+                customer_details: {
+                    email: email 
+                },
+                enabled_payments: ["qris", "bank_transfer"]
             })
         });
 
         const data = await response.json();
-        
-        if (!response.ok) {
-            // INI PENTING: Liat pesan error dari Midtrans di console Vercel
-            console.log("Midtrans Ngamuk:", data); 
-            return res.status(response.status).json(data);
-        }
-
         return res.status(200).json(data);
     } catch (error) {
         return res.status(500).json({ error: error.message });
