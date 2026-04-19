@@ -176,21 +176,22 @@ const payButton = document.getElementById('pay-button');
 payButton.onclick = async function () {
     const emailInput = document.getElementById('user-email').value;
 
-    // Cek dulu emailnya kosong atau kaga
     if (!emailInput) {
-        alert("Woi Cad, masukin email lu dulu biar lisensinya bisa dikirim!");
+        alert("Emailnya jangan kosong dong brok! Ntar lisensinya dikirim kemana?");
         return;
     }
 
+    // Ubah text tombol biar keliatan mikir
     payButton.innerText = "Loading...";
 
     try {
-        // Kirim emailnya ke backend checkout lu
+        // CUMA SATU KALI FETCH AJA
         const response = await fetch('/api/checkout', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: emailInput }) 
         });
+        
         const data = await response.json();
 
         if (data.token) {
@@ -206,9 +207,13 @@ payButton.onclick = async function () {
                     alert("Pembayaran gagal!");
                 }
             });
+        } else {
+            payButton.innerText = "PROCEED TO PAYMENT";
+            alert("Gagal dapet token! Cek koneksi.");
         }
     } catch (error) {
         payButton.innerText = "PROCEED TO PAYMENT";
-        alert("Server lagi puyeng!");
+        alert("Server lagi puyeng brok!");
+        console.error(error);
     }
 };

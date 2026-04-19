@@ -5,34 +5,29 @@ export default async function handler(req, res) {
 
     const data = req.body;
 
-    // Kalo statusnya "settlement" atau "capture" (artinya LUNAS)
     if (data.transaction_status === 'settlement' || data.transaction_status === 'capture') {
         const orderId = data.order_id;
         
-        // Midtrans balikin email user yang tadi kita titipin
-        const emailPembeli = data.customer_details ? data.customer_details.email : null; 
+        // AMBIL EMAIL DARI CUSTOM FIELD 1 (Dijamin 100% dapet)
+        const emailPembeli = data.custom_field1; 
 
         if (emailPembeli) {
-            // 1. Racik Lisensi Unik
             const angkaOrder = orderId.replace('RJ-', '');
             const licenseKey = "PRO-" + angkaOrder + "-GACOR";
 
-            // 2. Setup Mesin Pengirim Email (Nodemailer)
             const transporter = nodemailer.createTransport({
                 host: process.env.EMAIL_HOST,
                 port: 465,
-                secure: true, // Pake SSL
+                secure: true, 
                 auth: {
                     user: process.env.EMAIL_USER,
                     pass: process.env.EMAIL_PASS
                 },
-                // Tambahin ini biar gak kena blokir firewall hosting
                 tls: {
                     rejectUnauthorized: false 
                 }
             });
 
-            // 3. Desain Isi Emailnya
             const mailOptions = {
                 from: '"Richardo Journal" <support@richardojournal.com>',
                 to: emailPembeli,
@@ -53,16 +48,16 @@ export default async function handler(req, res) {
                 `
             };
 
-            // 4. Kirim Emailnya!
             try {
                 await transporter.sendMail(mailOptions);
                 console.log("🔥 EMAIL LISENSI SUKSES DIKIRIM KE:", emailPembeli);
             } catch (error) {
-                console.error("❌ Gagal ngirim email:", error);
+                console.error("❌ Gagal ngirim email. Cek Password/Host di Vercel!", error);
             }
+        } else {
+            console.log("Email pembeli ga nemu nih dari Midtrans.");
         }
     }
 
-    // Selalu kasih respon 200 OK ke Midtrans biar dia tenang
     res.status(200).json({ status: 'success' });
 }

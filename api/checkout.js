@@ -2,7 +2,6 @@ export default async function handler(req, res) {
     if (req.method !== 'POST') return res.status(405).json({ error: "Harus POST" });
 
     const serverKey = process.env.MIDTRANS_SERVER_KEY;
-    // Nangkep email dari script.js tadi
     const { email } = req.body; 
 
     if (!serverKey) return res.status(500).json({ error: "Server Key kaga ada!" });
@@ -20,12 +19,13 @@ export default async function handler(req, res) {
             body: JSON.stringify({
                 transaction_details: {
                     order_id: 'RJ-' + Date.now(),
-                    gross_amount: 50000
+                    gross_amount: 25000
                 },
-                // INI PENTING: Titip email ke Midtrans
                 customer_details: {
                     email: email 
                 },
+                // INI TRIKNYA: Titip email di brankas anti-hilang Midtrans
+                custom_field1: email, 
                 enabled_payments: ["qris", "bank_transfer"]
             })
         });
