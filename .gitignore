@@ -137,3 +137,8 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+"*.zip" 
+"*.exe" 
+"RichardoEliteJournal-1.1.4-Setup.exe" 
+"*.zip" 
+"*.exe" 
