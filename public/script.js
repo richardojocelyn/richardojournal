@@ -221,7 +221,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error(error);
             }
         };
-    } else {
-        alert("Tombol pay-button gak ketemu di HTML bro!");
     }
 });
