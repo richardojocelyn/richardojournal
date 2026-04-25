@@ -167,59 +167,60 @@ function closeModal() {
     }
 }
 
-// ==========================================
-// BUNGKUS KE DALAM DOMContentLoaded (YANG BENERAN)
-// ==========================================
-// ==========================================
-// BUNGKUS KE DALAM DOMContentLoaded
-// ==========================================
-document.addEventListener('DOMContentLoaded', () => {
-    const payButton = document.getElementById('pay-button');
 
-    if (payButton) {
-        payButton.onclick = async function () {
-            const emailInput = document.getElementById('user-email').value;
+gsap.registerPlugin(ScrollTrigger);
 
-            if (!emailInput) {
-                alert("Email jangan dikosongin, Cad!");
-                return;
-            }
+const orb = document.getElementById('dynamic-orb');
+const grid = document.querySelector('.bg-grid');
 
-            payButton.innerText = "Loading...";
+// Logic buat ganti "Mood" setiap section
+const sections = [
+    { id: "#home", color: "rgba(168, 85, 247, 0.2)", x: "20%", y: "10%", rotation: 0 },
+    { id: "#features", color: "rgba(34, 197, 94, 0.2)", x: "70%", y: "40%", rotation: 15 },
+    { id: "#dashboard", color: "rgba(0, 229, 255, 0.2)", x: "10%", y: "60%", rotation: -10 },
+    { id: "#accounts", color: "rgba(234, 179, 8, 0.2)", x: "50%", y: "80%", rotation: 5 }
+];
 
-            try {
-                const response = await fetch('/api/checkout', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: emailInput }) 
-                });
-                
-                // CEK KALAU SERVER VERCEL ERROR (Misal: 404 atau 500)
-                if (!response.ok) {
-                    throw new Error(`Server Error: ${response.status}`);
-                }
+const masterBg = document.getElementById('master-bg');
 
-                const data = await response.json();
+document.querySelectorAll('section').forEach(section => {
+    ScrollTrigger.create({
+        trigger: section,
+        start: "top center",
+        onEnter: () => updateBackground(section),
+        onEnterBack: () => updateBackground(section)
+    });
+});
 
-                // CEK APAKAH TOKEN BENERAN ADA
-                if (data.token) {
-                    payButton.innerText = "PROCEED TO PAYMENT";
-                    window.snap.pay(data.token, {
-                        onSuccess: function(result) {
-                            window.location.href = '/success.html?order=' + result.order_id;
-                        }
-                    });
-                } else {
-                    // KALAU BACKEND JALAN, TAPI MIDTRANS GAK NGASIH TOKEN
-                    payButton.innerText = "PROCEED TO PAYMENT";
-                    alert("Waduh, Midtrans gak ngasih token nih! Coba cek Vercel Logs lu.");
-                }
+function updateBackground(section) {
+    const type = section.getAttribute('data-bg-type');
+    const value = section.getAttribute('data-bg-value');
 
-            } catch (error) {
-                payButton.innerText = "PROCEED TO PAYMENT";
-                alert("Gagal konek ke API: " + error.message);
-                console.error(error);
-            }
-        };
+    if (type === 'grid') {
+        masterBg.style.backgroundImage = 'none';
+        masterBg.className = 'bg-grid-pattern';
+        masterBg.style.backgroundColor = '#020005';
+    } 
+    else if (type === 'image') {
+        masterBg.className = '';
+        masterBg.style.backgroundImage = value; // Ini bakal ngambil URL gambar lu
+        masterBg.style.backgroundSize = 'cover';
+        masterBg.style.backgroundPosition = 'center';
+    } 
+    else if (type === 'glow') {
+        masterBg.className = '';
+        masterBg.style.backgroundImage = 'none';
+        masterBg.style.backgroundColor = value === 'cyan' ? '#001a1d' : '#1a001a';
+    }
+}
+
+gsap.to(masterBg, {
+    yPercent: -10, // Gambar background gerak dikit pas di scroll
+    ease: "none",
+    scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: true
     }
 });

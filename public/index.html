@@ -19,7 +19,7 @@
     <link rel="icon" type="image/png" href="/favicon-6.png">
 </head>
 <body>
-
+    <div id="dynamic-orb" class="bg-purple-600"></div>
     <div id="cursor-blur"></div>
     <div id="cursor-aura"></div>
     <div class="bg-universe"></div>
@@ -48,29 +48,46 @@
             
     </nav>
 
-    <section id="home" class="relative pt-48 pb-32 px-6 max-w-7xl mx-auto flex flex-col items-center text-center">
-        <div class="glow-orb-purple top-0 left-[20%]"></div>
-        <div class="glow-orb-cyan bottom-0 right-[20%]"></div>
+    <section id="home" class="relative pt-48 pb-32 px-6 w-full flex flex-col items-center text-center overflow-hidden">
         
-        <div class="reveal glass-panel !rounded-full px-5 py-2 mb-8 inline-flex items-center gap-3">
-            <i class="fas fa-crosshairs text-purple-400"></i>
-            <span class="text-xs font-bold tracking-widest text-gray-300 uppercase">Built for Sniper Traders</span>
+        <div class="absolute inset-0 z-0 w-full h-full pointer-events-none overflow-hidden">
+            
+            <div class="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat blur-[2px] opacity-100 scale-110" 
+                style="background-image: url('Screenshot 2026-04-25 175104.png');">
+            </div>
+            
+            <div class="absolute inset-0 z-1 bg-gradient-to-b from-[#020005]/80 via-[#020005]/60 to-[#020005]"></div>
         </div>
 
-        <div id="ticker-container" class="absolute top-[74px] left-0 w-screen z-40 border-y border-white/5 bg-[#020005]/80 backdrop-blur-md"></div>
-        
-        <h1 class="reveal text-6xl md:text-8xl font-black leading-tight mb-6 tracking-tighter text-glassy-glow">
-            Stop Trading <span class="text-white/70">Blind.</span><br>
-            <span class="text-gradient-glassy italic">Master Your Execution.</span>
-        </h1>
-        
-        <p class="reveal text-gray-400 text-lg md:text-xl max-w-3xl mb-12 leading-relaxed">
-            More than just a P&L tracker. This is a local architecture engineered to dissect your trading psychology, ruthlessly track SOP compliance, and ensure you never blow another Prop-Firm evaluation due to emotional damage. Execute like a machine, evaluate like an institution.
-        </p>
+        <div class="absolute inset-0 z-0 w-full h-full pointer-events-none flex items-start justify-center">
+            <div class="absolute top-[-10%] w-[800px] h-[600px] bg-purple-900/30 blur-[150px] rounded-full mix-blend-screen"></div>
+        </div>
 
-        <div class="reveal flex gap-4">
-            <a href="#features" class="bg-gradient-to-r from-purple-600 to-cyan-600 px-8 py-4 rounded-full font-bold text-white shadow-[0_0_24px_rgba(168,85,247,0.4)] hover:shadow-[0_0_40px_rgba(168,85,247,0.6)] hover:scale-105 transition-all duration-300">Explore Features</a>
-            <a href="#tutorial" class="glass-panel px-8 py-4 rounded-full font-bold text-white hover:bg-white/10 hover:border-purple-500/50 hover:scale-105 transition-all duration-300">Read Tutorial</a>
+        <div class="absolute inset-0 z-[-1] w-full h-full pointer-events-none flex items-start justify-center">
+            <div class="absolute top-[-10%] w-[800px] h-[600px] bg-purple-900/30 blur-[150px] rounded-full mix-blend-screen"></div>
+        </div>
+
+        <div class="absolute top-10 left-[15%] w-64 h-64 bg-purple-600/20 blur-[100px] rounded-full pointer-events-none animate-pulse" style="animation-duration: 4s;"></div>
+        <div class="absolute bottom-10 right-[15%] w-64 h-64 bg-cyan-500/15 blur-[100px] rounded-full pointer-events-none animate-pulse" style="animation-duration: 6s;"></div>
+        <div class="max-w-7xl mx-auto flex flex-col items-center z-10">
+            <div class="reveal glass-panel !rounded-full px-5 py-2 mb-8 inline-flex items-center gap-3 border border-purple-500/30 bg-purple-900/10 shadow-[0_0_20px_rgba(168,85,247,0.2)]">
+                <i class="fas fa-crosshairs text-purple-400"></i>
+                <span class="text-xs font-bold tracking-widest text-gray-300 uppercase">Built for Sniper Traders</span>
+            </div>
+
+            <h1 class="reveal text-6xl md:text-8xl font-black leading-tight mb-6 tracking-tighter text-glassy-glow">
+                Stop Trading <span class="text-white/70">Blind.</span><br>
+                <span class="text-gradient-glassy italic">Master Your Execution.</span>
+            </h1>
+            
+            <p class="reveal text-gray-400 text-lg md:text-xl max-w-3xl mb-12 leading-relaxed">
+                More than just a P&L tracker. This is a local architecture engineered to dissect your trading psychology, ruthlessly track SOP compliance, and ensure you never blow another Prop-Firm evaluation due to emotional damage. Execute like a machine, evaluate like an institution.
+            </p>
+
+            <div class="reveal flex gap-4">
+                <a href="#features" class="bg-gradient-to-r from-purple-600 to-cyan-600 px-8 py-4 rounded-full font-bold text-white shadow-[0_0_24px_rgba(168,85,247,0.4)] hover:shadow-[0_0_40px_rgba(168,85,247,0.6)] hover:scale-105 transition-all duration-300">Explore Features</a>
+                <a href="#tutorial" class="glass-panel px-8 py-4 rounded-full font-bold text-white hover:bg-white/10 hover:border-purple-500/50 hover:scale-105 transition-all duration-300">Read Tutorial</a>
+            </div>
         </div>
     </section>
 
@@ -163,15 +180,26 @@
         </div>
     </div>
     <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-purple-600 via-cyan-400 to-white z-[60] w-0 shadow-[0_0_10px_rgba(0,229,255,0.8)]"></div>
-    <section class="py-20 overflow-hidden bg-[#020005] relative">
-        <div class="text-center mb-12">
+    <section class="py-20 overflow-hidden relative w-full z-10">
+        
+        <div class="absolute inset-0 z-[-1] w-full h-full pointer-events-none overflow-hidden">
+            
+            <div class="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat blur-[1px] opacity-90 scale-105" 
+                style="background-image: url('Screenshot 2026-04-25 175126.png');">
+            </div>
+            
+            <div class="absolute inset-0 bg-[#020005]/80"></div>
+
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-purple-900/20 blur-[120px] rounded-full mix-blend-screen"></div>
+        </div>
+        <div class="text-center mb-12 relative z-10">
             <h2 class="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter">
                 32 <span class="text-purple-400">OVERPOWERED</span> QUANT FEATURES
             </h2>
             <p class="text-gray-500 text-sm mt-2 font-mono">SCROLL TO DISSECT THE SYSTEM</p>
         </div>
 
-        <div class="marquee-wrapper mb-6">
+        <div class="marquee-wrapper mb-6 relative z-10">
             <div class="marquee-track flex gap-4 animate-scroll-left">
                 <div class="feature-card"><img src="Screenshot 2026-04-25 175104.png" alt="Feature 1"></div>
                 <div class="feature-card"><img src="Screenshot 2026-04-25 175111.png" alt="Feature 2"></div>
@@ -192,7 +220,7 @@
             </div>
         </div>
 
-        <div class="marquee-wrapper">
+        <div class="marquee-wrapper relative z-10">
             <div class="marquee-track flex gap-4 animate-scroll-right">
                 <div class="feature-card"><img src="Screenshot 2026-04-25 175226.png" alt="Feature 9"></div>
                 <div class="feature-card"><img src="Screenshot 2026-04-25 175241.png" alt="Feature 10"></div>
@@ -213,9 +241,23 @@
             </div>
         </div>
     </section>
-    <section id="features" class="py-24 px-6 max-w-[1400px] mx-auto">
+    <section id="features" class="py-24 px-6 w-full relative z-10 overflow-hidden">
+        
+        <div class="absolute inset-0 z-[-1] w-full h-full pointer-events-none">
+            
+            <div class="absolute top-0 w-full h-[60%] bg-[url('Screenshot 2026-04-25 175331.png')] bg-cover bg-top bg-no-repeat blur-[1px] opacity-90"></div>
+
+            <div class="absolute bottom-0 w-full h-[60%] bg-[url('Screenshot 2026-04-25 175301.png')] bg-cover bg-bottom bg-no-repeat blur-[1px] opacity-90"></div>
+            
+            <div class="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(2,0,5,0.7)_0%,rgba(2,0,5,1)_50%,rgba(2,0,5,0.7)_100%)]"></div>
+
+            <div class="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-red-900/10 blur-[120px] rounded-full mix-blend-screen"></div>
+            <div class="absolute bottom-[20%] right-[-10%] w-[500px] h-[500px] bg-purple-900/10 blur-[120px] rounded-full mix-blend-screen"></div>
+        </div>
+        <div class="max-w-[1400px] mx-auto relative z-10">
             <div class="absolute top-1/2 left-0 -translate-y-1/2 w-full overflow-hidden pointer-events-none z-0 bg-auto-text-container"></div>
-            <div class="text-center mb-16">
+            
+            <div class="text-center mb-16 relative z-10">
                 <div class="reveal glass-panel !rounded-full px-4 py-1 mb-4 inline-flex items-center gap-2 mx-auto border-red-500/30 bg-red-900/10">
                     <i class="fas fa-skull text-red-500 text-xs"></i>
                     <span class="text-[10px] font-bold tracking-[0.2em] text-red-400 uppercase">Warning: 32 Overpowered Quant Features</span>
@@ -224,7 +266,7 @@
                 <p class="reveal text-gray-400 text-lg max-w-2xl mx-auto">Engineered to obliterate emotional bias. Here are 32 reasons why competitors can only clone the visuals, but will never replicate the execution algorithm.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 relative">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 relative z-10">
                 
                 <div class="reveal glass-panel p-5 border-t-2 border-t-purple-500/50 hover:-translate-y-2 transition-transform duration-300 group">
                     <i class="fas fa-microchip text-2xl text-purple-400 mb-3 group-hover:scale-110 transition-transform"></i>
@@ -297,7 +339,6 @@
                     <h3 class="font-bold text-white mb-2">AI Tilt Detector</h3>
                     <p class="text-xs text-white leading-relaxed">Psychological radar. Detects consecutive losing streaks and auto-triggers an emotional warning state to prevent account-blowing revenge trades.</p>
                 </div>
-                
                 <div class="glass-panel p-5 border-t-2 border-t-white/10 blur-[6px] opacity-40 grayscale select-none pointer-events-none">
                     <i class="fas fa-power-off text-2xl text-white mb-3"></i>
                     <h3 class="font-bold text-white mb-2">Panic Lock (Kill Switch)</h3>
@@ -318,7 +359,6 @@
                     <h3 class="font-bold text-white mb-2">Asset Edge Dominance</h3>
                     <p class="text-xs text-white leading-relaxed">Instrument superiority radar. Dissects Win Rate and Net PnL metrics specifically across the assets you deploy capital on (NQ vs ES vs Gold).</p>
                 </div>
-
                 <div class="glass-panel p-5 border-t-2 border-t-white/10 blur-[6px] opacity-40 grayscale select-none pointer-events-none">
                     <i class="fas fa-scale-balanced text-2xl text-white mb-3"></i>
                     <h3 class="font-bold text-white mb-2">Expectancy Score</h3>
@@ -339,7 +379,6 @@
                     <h3 class="font-bold text-white mb-2">Temporal Edge (Day Tracker)</h3>
                     <p class="text-xs text-white leading-relaxed">Execution day mapping. Algorithms hunt for performance anomalies across the week (Mon-Fri) to blacklist trading on historically red days.</p>
                 </div>
-
                 <div class="glass-panel p-5 border-t-2 border-t-white/10 blur-[6px] opacity-40 grayscale select-none pointer-events-none">
                     <i class="fas fa-id-card text-2xl text-white mb-3"></i>
                     <h3 class="font-bold text-white mb-2">Elite Trade Card Export</h3>
@@ -360,7 +399,6 @@
                     <h3 class="font-bold text-white mb-2">Debugger Trap</h3>
                     <p class="text-xs text-white leading-relaxed">Anti-tamper mechanism. Cripples DevTools access and developer shortcuts via aggressive looping scripts to defend the IP of the source code.</p>
                 </div>
-
                 <div class="glass-panel p-5 border-t-2 border-t-white/10 blur-[6px] opacity-40 grayscale select-none pointer-events-none">
                     <i class="fas fa-chart-area text-2xl text-white mb-3"></i>
                     <h3 class="font-bold text-white mb-2">Underwater Charting</h3>
@@ -392,7 +430,7 @@
                     <p class="text-xs text-white leading-relaxed">Interface atmosphere controller. Deploys dynamic Dark Mode color ecosystems based on custom CSS (Glassy, Neon, Mac-styled) without sacrificing render speed.</p>
                 </div>
 
-                <div class="absolute bottom-0 left-0 w-full h-[65%] bg-gradient-to-t from-[#020005] via-[#020005]/90 to-transparent flex flex-col items-center justify-end pb-24 z-10 pointer-events-none">
+                <div class="absolute bottom-0 left-0 w-full h-[55%] bg-gradient-to-t from-[#020005] via-[#020005]/95 to-transparent flex flex-col items-center justify-end pb-24 z-20 pointer-events-none">
                     <div class="glass-panel px-10 py-8 rounded-3xl flex flex-col items-center text-center pointer-events-auto border-purple-500/50 shadow-[0_0_40px_rgba(168,85,247,0.3)] max-w-lg mx-4">
                         <div class="w-16 h-16 rounded-full bg-purple-900/40 flex items-center justify-center mb-4 border border-purple-500/50">
                             <i class="fas fa-lock text-2xl text-purple-400"></i>
@@ -406,17 +444,28 @@
                 </div>
 
             </div>
-        </section>
+        </div>
     </section>
-    <section class="py-20 overflow-hidden bg-[#020005] relative">
-        <div class="text-center mb-12">
+    <section class="py-20 overflow-hidden relative w-full z-10">
+        
+        <div class="absolute inset-0 z-[-1] w-full h-full pointer-events-none overflow-hidden">
+            
+            <div class="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat blur-[1px] opacity-90 scale-105" 
+                style="background-image: url('Screenshot 2026-04-25 175331.png');">
+            </div>
+            
+            <div class="absolute inset-0 bg-[#020005]/80"></div>
+
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-purple-900/20 blur-[120px] rounded-full mix-blend-screen"></div>
+        </div>
+        <div class="text-center mb-12 relative z-10">
             <h2 class="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter">
                 32 <span class="text-purple-400">OVERPOWERED</span> QUANT FEATURES
             </h2>
             <p class="text-gray-500 text-sm mt-2 font-mono">SCROLL TO DISSECT THE SYSTEM</p>
         </div>
 
-        <div class="marquee-wrapper mb-6">
+        <div class="marquee-wrapper mb-6 relative z-10">
             <div class="marquee-track flex gap-4 animate-scroll-left">
                 <div class="feature-card"><img src="Screenshot 2026-04-25 175104.png" alt="Feature 1"></div>
                 <div class="feature-card"><img src="Screenshot 2026-04-25 175111.png" alt="Feature 2"></div>
@@ -437,7 +486,7 @@
             </div>
         </div>
 
-        <div class="marquee-wrapper">
+        <div class="marquee-wrapper relative z-10">
             <div class="marquee-track flex gap-4 animate-scroll-right">
                 <div class="feature-card"><img src="Screenshot 2026-04-25 175226.png" alt="Feature 9"></div>
                 <div class="feature-card"><img src="Screenshot 2026-04-25 175241.png" alt="Feature 10"></div>
@@ -476,13 +525,18 @@
     </div>
     <div id="features" class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent my-10"></div>
 
-    <section id="dashboard" class="py-32 px-6 max-w-7xl mx-auto relative z-20">
-        <div class="absolute top-1/2 left-0 w-[500px] h-[500px] bg-purple-900/20 blur-[150px] rounded-full pointer-events-none -translate-y-1/2"></div>
-
-        <div class="flex flex-col lg:flex-row items-center gap-16 relative z-10">
+    <section id="dashboard" class="py-32 w-full relative z-20 overflow-hidden">
+        
+        <div class="dashboard-bg">
+            <div class="dashboard-image-layer"></div>
+            <div class="dashboard-overlay-layer"></div>
+            
+            <div class="absolute top-1/2 left-[-10%] w-[600px] h-[600px] bg-purple-900/20 blur-[150px] rounded-full pointer-events-none -translate-y-1/2 z-0 mix-blend-screen"></div>
+        </div>
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12 xl:px-24 flex flex-col lg:flex-row items-center gap-16 relative z-10">
             
             <div class="w-full lg:w-1/2">
-                <div class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-[10px] font-black tracking-[0.2em] uppercase mb-6 shadow-[0_0_15px_rgba(168,85,247,0.2)]">
+                <div class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-500/30 bg-[#020005]/60 backdrop-blur-sm text-purple-400 text-[10px] font-black tracking-[0.2em] uppercase mb-6 shadow-[0_0_15px_rgba(168,85,247,0.2)]">
                     <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span>
                     01 / Tactical Overview
                 </div>
@@ -491,38 +545,38 @@
                     Apex Command <br> <span class="text-gradient-gacor">Center.</span>
                 </h2>
                 
-                <p class="reveal text-gray-400 text-lg mb-10 leading-relaxed font-medium">
+                <p class="reveal text-gray-300 text-lg mb-10 leading-relaxed font-medium drop-shadow-md">
                     Abandon your slow, primitive Excel spreadsheets. This is your personal <span class="text-cyan-400 font-bold drop-shadow-[0_0_5px_rgba(0,229,255,0.5)]">Execution Desk</span> powered by an ultra-lightweight local architecture. Visualize thousands of raw data points into lethal metrics in mere milliseconds.
                 </p>
                 
                 <ul class="space-y-4">
                     <li class="reveal feature-item flex items-start gap-5 cursor-default group">
-                        <div class="feature-icon-box purple-glow w-14 h-14 rounded-2xl flex justify-center items-center text-purple-400 text-2xl shrink-0 border border-white/10 group-hover:scale-110 transition-transform">
+                        <div class="feature-icon-box purple-glow w-14 h-14 rounded-2xl flex justify-center items-center text-purple-400 text-2xl shrink-0 border border-white/10 group-hover:scale-110 transition-transform bg-[#020005]/40 backdrop-blur-sm">
                             <i class="fas fa-microscope"></i>
                         </div>
                         <div>
-                            <h4 class="font-bold text-white text-lg tracking-wide group-hover:text-purple-400 transition-colors">Precision Analytics</h4>
-                            <p class="text-sm text-gray-400 mt-1 leading-relaxed">Ruthless calculations for Win Rate, Profit Factor, and R-Multiple. Dissect exactly which setup is carrying your portfolio.</p>
+                            <h4 class="font-bold text-white text-lg tracking-wide group-hover:text-purple-400 transition-colors drop-shadow-md">Precision Analytics</h4>
+                            <p class="text-sm text-gray-300 mt-1 leading-relaxed drop-shadow-md">Ruthless calculations for Win Rate, Profit Factor, and R-Multiple. Dissect exactly which setup is carrying your portfolio.</p>
                         </div>
                     </li>
                     
                     <li class="reveal feature-item flex items-start gap-5 cursor-default group">
-                        <div class="feature-icon-box cyan-glow w-14 h-14 rounded-2xl flex justify-center items-center text-cyan-400 text-2xl shrink-0 border border-white/10 group-hover:scale-110 transition-transform">
+                        <div class="feature-icon-box cyan-glow w-14 h-14 rounded-2xl flex justify-center items-center text-cyan-400 text-2xl shrink-0 border border-white/10 group-hover:scale-110 transition-transform bg-[#020005]/40 backdrop-blur-sm">
                             <i class="fas fa-chart-area"></i>
                         </div>
                         <div>
-                            <h4 class="font-bold text-white text-lg tracking-wide group-hover:text-cyan-400 transition-colors">Dynamic Equity Curve</h4>
-                            <p class="text-sm text-gray-400 mt-1 leading-relaxed">Interactive equity growth charting. Monitor your portfolio's ascension exactly like an institutional <i>Fund Manager</i>.</p>
+                            <h4 class="font-bold text-white text-lg tracking-wide group-hover:text-cyan-400 transition-colors drop-shadow-md">Dynamic Equity Curve</h4>
+                            <p class="text-sm text-gray-300 mt-1 leading-relaxed drop-shadow-md">Interactive equity growth charting. Monitor your portfolio's ascension exactly like an institutional <i>Fund Manager</i>.</p>
                         </div>
                     </li>
                     
                     <li class="reveal feature-item flex items-start gap-5 cursor-default group">
-                        <div class="feature-icon-box yellow-glow w-14 h-14 rounded-2xl flex justify-center items-center text-yellow-400 text-2xl shrink-0 border border-white/10 group-hover:scale-110 transition-transform">
+                        <div class="feature-icon-box yellow-glow w-14 h-14 rounded-2xl flex justify-center items-center text-yellow-400 text-2xl shrink-0 border border-white/10 group-hover:scale-110 transition-transform bg-[#020005]/40 backdrop-blur-sm">
                             <i class="fas fa-brain"></i>
                         </div>
                         <div>
-                            <h4 class="font-bold text-white text-lg tracking-wide group-hover:text-yellow-400 transition-colors">Psychology Checkpoint</h4>
-                            <p class="text-sm text-gray-400 mt-1 leading-relaxed">Anti-overtrade protection system. Track emotional states (FOMO, Greed) on every entry to restructure your discipline from the inside out.</p>
+                            <h4 class="font-bold text-white text-lg tracking-wide group-hover:text-yellow-400 transition-colors drop-shadow-md">Psychology Checkpoint</h4>
+                            <p class="text-sm text-gray-300 mt-1 leading-relaxed drop-shadow-md">Anti-overtrade protection system. Track emotional states (FOMO, Greed) on every entry to restructure your discipline from the inside out.</p>
                         </div>
                     </li>
                 </ul>
@@ -531,19 +585,19 @@
             <div class="reveal w-full lg:w-1/2 relative perspective-1000 mt-10 lg:mt-0">
                 <div class="absolute -inset-4 bg-gradient-to-tr from-cyan-500/20 to-purple-600/30 blur-3xl rounded-full z-0 animate-pulse"></div>
                 
-                <div class="absolute -top-6 -right-6 glass-panel px-4 py-2 flex items-center gap-3 rounded-full border-cyan-500/50 shadow-[0_0_20px_rgba(0,229,255,0.2)] z-30 floating-img" style="animation-delay: 1s;">
+                <div class="absolute -top-6 -right-6 glass-panel px-4 py-2 flex items-center gap-3 rounded-full border-cyan-500/50 shadow-[0_0_20px_rgba(0,229,255,0.2)] z-30 floating-img bg-[#020005]/60 backdrop-blur-md" style="animation-delay: 1s;">
                     <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
                     <span class="text-[10px] font-black text-white uppercase tracking-widest">SQLite Synced</span>
                 </div>
 
-                <div class="absolute -bottom-8 -left-8 w-20 h-20 glass-3d-card rounded-2xl flex justify-center items-center text-3xl text-purple-400 z-30 floating-img shadow-[0_20px_40px_rgba(168,85,247,0.4)]">
+                <div class="absolute -bottom-8 -left-8 w-20 h-20 glass-3d-card rounded-2xl flex justify-center items-center text-3xl text-purple-400 z-30 floating-img shadow-[0_20px_40px_rgba(168,85,247,0.4)] bg-[#020005]/60 backdrop-blur-md">
                     <i class="fas fa-bolt"></i>
                 </div>
                 
                 <div class="glass-3d-card p-2 relative z-10 group tilt-element">
-                    <div class="mac-image-container rounded-xl overflow-hidden border border-white/10 relative bg-[#050508] h-[400px] flex flex-col">
+                    <div class="mac-image-container rounded-xl overflow-hidden border border-white/10 relative bg-[#050508]/80 backdrop-blur-xl h-[400px] flex flex-col shadow-2xl">
                         
-                        <div class="bg-[#12121a] h-10 flex items-center px-4 gap-2 border-b border-white/5 shrink-0 z-20">
+                        <div class="bg-[#12121a]/90 h-10 flex items-center px-4 gap-2 border-b border-white/5 shrink-0 z-20">
                             <div class="w-3 h-3 rounded-full bg-[#ff5f56] shadow-[0_0_10px_rgba(255,95,86,0.5)]"></div>
                             <div class="w-3 h-3 rounded-full bg-[#ffbd2e] shadow-[0_0_10px_rgba(255,189,46,0.5)]"></div>
                             <div class="w-3 h-3 rounded-full bg-[#27c93f] shadow-[0_0_10px_rgba(39,201,63,0.5)]"></div>
@@ -613,433 +667,482 @@
         </div>
     </section>
 
-    <section id="accounts" class="py-24 px-6 max-w-7xl mx-auto relative z-20">
-        <div class="flex flex-col md:flex-row-reverse items-center gap-16">
-            <div class="w-full md:w-1/2">
-                <div class="reveal text-cyan-400 text-sm font-bold tracking-widest uppercase mb-2 drop-shadow-[0_0_8px_rgba(0,229,255,0.5)]">02 / Portfolio Management</div>
-                <h2 class="reveal text-4xl md:text-5xl font-black mb-6">Prop-Firm <span class="text-gradient">Ready.</span></h2>
-                
-                <p class="reveal text-gray-400 text-lg mb-8 leading-relaxed">
-                    Bypass the evaluation phase without the stress. This system is explicitly designed to guard your <span class="text-white font-bold">Max Daily Drawdown</span> limits. Manage metrics across Personal, Challenge, and Funded Accounts within a single dashboard like a true Fund Manager.
-                </p>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
-                    <div class="reveal glass-panel p-6 hover:-translate-y-1 transition-transform border-l-2 border-l-purple-500">
-                        <i class="fas fa-layer-group text-3xl text-purple-400 mb-4 drop-shadow-[0_0_10px_rgba(168,85,247,0.5)]"></i>
-                        <h4 class="font-bold text-white mb-2">Multi-Account</h4>
-                        <p class="text-sm text-gray-400 leading-relaxed">Segregate the database for every prop-firm account so your trade history remains untainted.</p>
-                    </div>
-                    <div class="reveal glass-panel p-6 hover:-translate-y-1 transition-transform border-l-2 border-l-cyan-500">
-                        <i class="fas fa-shield-halved text-3xl text-cyan-400 mb-4 drop-shadow-[0_0_10px_rgba(0,229,255,0.5)]"></i>
-                        <h4 class="font-bold text-white mb-2">Drawdown HUD</h4>
-                        <p class="text-sm text-gray-400 leading-relaxed">Real-time visual alarms deployed right before you violate your daily loss limits.</p>
-                    </div>
-                </div>
-
-                <div class="reveal pt-6 border-t border-white/10 w-full overflow-hidden relative">
-                    <div class="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-[#020005] to-transparent z-10 pointer-events-none"></div>
-                    <div class="absolute top-0 right-0 w-16 h-full bg-gradient-to-l from-[#020005] to-transparent z-10 pointer-events-none"></div>
-
-                    <p class="text-[10px] text-gray-500 font-bold uppercase tracking-[0.2em] mb-4">Secure Your License Via :</p>
-                    
-                    <div class="flex w-max group/marquee" style="animation: ticker-scroll 30s linear infinite;">
-                        <div class="flex gap-6 items-center px-4">
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-pink-500/50 hover:bg-pink-500/10 transition-all cursor-default">
-                                <i class="fas fa-qrcode text-pink-500"></i>
-                                <span class="text-xs font-black tracking-widest text-white">QRIS</span>
-                            </div>
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#00AED6]/50 hover:bg-[#00AED6]/10 transition-all cursor-default">
-                                <i class="fas fa-wallet text-[#00AED6]"></i>
-                                <span class="text-xs font-black text-white">gopay</span>
-                            </div>
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#4C3494]/50 hover:bg-[#4C3494]/10 transition-all cursor-default">
-                                <i class="fas fa-circle-notch text-[#4C3494] font-bold"></i>
-                                <span class="text-xs font-black text-white italic">OVO</span>
-                            </div>
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#118EEA]/50 hover:bg-[#118EEA]/10 transition-all cursor-default">
-                                <i class="fas fa-money-check-dollar text-[#118EEA]"></i>
-                                <span class="text-xs font-black text-white">DANA</span>
-                            </div>
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#EE4D2D]/50 hover:bg-[#EE4D2D]/10 transition-all cursor-default">
-                                <i class="fas fa-bag-shopping text-[#EE4D2D]"></i>
-                                <span class="text-xs font-bold text-white">ShopeePay</span>
-                            </div>
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#E32322]/50 hover:bg-[#E32322]/10 transition-all cursor-default">
-                                <i class="fas fa-link text-[#E32322]"></i>
-                                <span class="text-xs font-bold text-white">LinkAja</span>
-                            </div>
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#0066AE]/50 hover:bg-[#0066AE]/10 transition-all cursor-default">
-                                <i class="fas fa-building-columns text-[#0066AE]"></i>
-                                <span class="text-xs font-bold text-gray-300">BCA VA</span>
-                            </div>
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#F2C000]/50 hover:bg-[#F2C000]/10 transition-all cursor-default">
-                                <i class="fas fa-building-columns text-[#F2C000]"></i>
-                                <span class="text-xs font-bold text-gray-300">Mandiri VA</span>
-                            </div>
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#005E6A]/50 hover:bg-[#005E6A]/10 transition-all cursor-default">
-                                <i class="fas fa-building-columns text-[#005E6A]"></i>
-                                <span class="text-xs font-bold text-gray-300">BNI VA</span>
-                            </div>
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#00529C]/50 hover:bg-[#00529C]/10 transition-all cursor-default">
-                                <i class="fas fa-building-columns text-[#00529C]"></i>
-                                <span class="text-xs font-bold text-gray-300">BRI VA</span>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-6 items-center px-4">
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-pink-500/50 hover:bg-pink-500/10 transition-all cursor-default">
-                                <i class="fas fa-qrcode text-pink-500"></i>
-                                <span class="text-xs font-black tracking-widest text-white">QRIS</span>
-                            </div>
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#00AED6]/50 hover:bg-[#00AED6]/10 transition-all cursor-default">
-                                <i class="fas fa-wallet text-[#00AED6]"></i>
-                                <span class="text-xs font-black text-white">gopay</span>
-                            </div>
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#4C3494]/50 hover:bg-[#4C3494]/10 transition-all cursor-default">
-                                <i class="fas fa-circle-notch text-[#4C3494] font-bold"></i>
-                                <span class="text-xs font-black text-white italic">OVO</span>
-                            </div>
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#118EEA]/50 hover:bg-[#118EEA]/10 transition-all cursor-default">
-                                <i class="fas fa-money-check-dollar text-[#118EEA]"></i>
-                                <span class="text-xs font-black text-white">DANA</span>
-                            </div>
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#EE4D2D]/50 hover:bg-[#EE4D2D]/10 transition-all cursor-default">
-                                <i class="fas fa-bag-shopping text-[#EE4D2D]"></i>
-                                <span class="text-xs font-bold text-white">ShopeePay</span>
-                            </div>
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#E32322]/50 hover:bg-[#E32322]/10 transition-all cursor-default">
-                                <i class="fas fa-link text-[#E32322]"></i>
-                                <span class="text-xs font-bold text-white">LinkAja</span>
-                            </div>
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#0066AE]/50 hover:bg-[#0066AE]/10 transition-all cursor-default">
-                                <i class="fas fa-building-columns text-[#0066AE]"></i>
-                                <span class="text-xs font-bold text-gray-300">BCA VA</span>
-                            </div>
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#F2C000]/50 hover:bg-[#F2C000]/10 transition-all cursor-default">
-                                <i class="fas fa-building-columns text-[#F2C000]"></i>
-                                <span class="text-xs font-bold text-gray-300">Mandiri VA</span>
-                            </div>
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#005E6A]/50 hover:bg-[#005E6A]/10 transition-all cursor-default">
-                                <i class="fas fa-building-columns text-[#005E6A]"></i>
-                                <span class="text-xs font-bold text-gray-300">BNI VA</span>
-                            </div>
-                            <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#00529C]/50 hover:bg-[#00529C]/10 transition-all cursor-default">
-                                <i class="fas fa-building-columns text-[#00529C]"></i>
-                                <span class="text-xs font-bold text-gray-300">BRI VA</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="reveal w-full md:w-1/2 relative tilt-element">
-                <div class="absolute -inset-4 bg-cyan-600/20 blur-2xl rounded-full z-0 pointer-events-none"></div>
-                
-                <div class="absolute -right-4 -top-8 glass-panel px-4 py-2 flex items-center gap-2 rounded-full border-green-500/50 shadow-[0_0_25px_rgba(34,197,94,0.2)] animate-bounce z-30" style="animation-duration: 4s;">
-                    <i class="fas fa-certificate text-green-400"></i>
-                    <span class="text-[10px] font-black text-white uppercase tracking-widest">Funded 100K</span>
-                </div>
-
-                <div class="glass-panel p-4 relative z-10 group">
-                    <div class="mac-image-container relative">
-                        <div class="bg-[#1a1a24] h-8 flex items-center px-4 gap-2 border-b border-white/5 relative z-20">
-                            <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div><div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div><div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
-                            <div class="ml-auto text-[10px] text-gray-500 tracking-widest uppercase font-bold">Risk_Manager.exe</div>
-                        </div>
-                        <div class="p-8 bg-[#0a0a0f] h-[350px] flex flex-col gap-6 relative overflow-hidden">
-                            <div class="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
-
-                            <div class="glass-panel p-5 rounded-xl border-l-4 border-l-cyan-400 relative z-10 hover:scale-[1.02] transition-transform">
-                                <div class="flex justify-between items-end mb-2">
-                                    <div class="text-xs text-gray-400 font-bold tracking-wider">PROFIT TARGET</div>
-                                    <div class="text-cyan-400 font-mono font-bold">8.0%</div>
-                                </div>
-                                <div class="w-full bg-black/60 h-4 rounded-full overflow-hidden shadow-inner border border-white/5">
-                                    <div class="bg-gradient-to-r from-cyan-600 to-cyan-400 h-full rounded-full w-[65%] shadow-[0_0_10px_rgba(0,229,255,0.5)] relative">
-                                        <div class="absolute top-0 right-0 bottom-0 left-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.2)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.2)_50%,rgba(255,255,255,0.2)_75%,transparent_75%,transparent)] bg-[length:20px_20px] animate-[ticker-scroll_2s_linear_infinite]"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="glass-panel p-5 rounded-xl border-l-4 border-l-red-500 relative z-10 hover:scale-[1.02] transition-transform">
-                                <div class="flex justify-between items-end mb-2">
-                                    <div class="text-xs text-gray-400 font-bold tracking-wider">DAILY DRAWDOWN</div>
-                                    <div class="text-red-500 font-mono font-bold">2.1% / 5.0%</div>
-                                </div>
-                                <div class="w-full bg-black/60 h-4 rounded-full overflow-hidden shadow-inner border border-white/5">
-                                    <div class="bg-gradient-to-r from-red-600 to-red-500 h-full rounded-full w-[42%] shadow-[0_0_10px_rgba(239,68,68,0.5)] relative">
-                                        <div class="absolute top-0 right-0 bottom-0 left-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.2)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.2)_50%,rgba(255,255,255,0.2)_75%,transparent_75%,transparent)] bg-[length:20px_20px] animate-[ticker-scroll_2s_linear_infinite]"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section id="accounts" class="py-24 w-full relative z-20 overflow-hidden">
+        
+        <div class="accounts-bg">
+            <div class="accounts-image-layer"></div>
+            <div class="accounts-overlay-layer"></div>
         </div>
-    </section>
-
-    <section id="export" class="py-24 px-6 max-w-7xl mx-auto relative z-20">
-        <div class="text-center mb-16">
-            <div class="reveal glass-panel !rounded-full px-4 py-1 mb-4 inline-flex items-center gap-2 mx-auto border-green-500/30 bg-green-900/10">
-                <i class="fas fa-share-nodes text-green-500 text-xs"></i>
-                <span class="text-[10px] font-bold tracking-[0.2em] text-green-400 uppercase">Social Proof Module</span>
-            </div>
-            <h2 class="reveal text-4xl md:text-5xl font-black mb-4">The Sniper <span class="text-gradient">Execution.</span></h2>
-            <p class="reveal text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
-                Validate your edge to the world. Our export system transmutes your raw profit data into high-resolution <i>Verified Trade Cards</i>, ready to silence any doubts in your inner circles and social media.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="reveal glass-panel p-8 md:col-span-2 relative overflow-hidden group">
-                <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-purple-600/10 blur-[80px] rounded-full pointer-events-none transition-transform duration-700 group-hover:scale-150"></div>
-                
-                <div class="flex items-center gap-4 mb-8 relative z-10">
-                    <div class="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.2)]">
-                        <i class="fas fa-book-journal-whills text-2xl text-purple-400"></i>
-                    </div>
-                    <h3 class="text-2xl md:text-3xl font-black text-white tracking-tight">Smart Trading Journal</h3>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
-                    <div class="glass-panel p-5 border-l-2 border-l-purple-500 hover:-translate-y-1 transition-transform cursor-default">
-                        <div class="flex items-center gap-3 mb-2">
-                            <i class="fas fa-list-ol text-purple-400 text-lg"></i>
-                            <h4 class="font-bold text-white text-sm">10-Row Pagination</h4>
-                        </div>
-                        <p class="text-xs text-gray-400 leading-relaxed">Immaculate, lag-free UI, rendering 10 rows at a time so the engine stays incredibly light even with thousands of entries.</p>
-                    </div>
-                    <div class="glass-panel p-5 border-l-2 border-l-cyan-500 hover:-translate-y-1 transition-transform cursor-default">
-                        <div class="flex items-center gap-3 mb-2">
-                            <i class="fas fa-tags text-cyan-400 text-lg"></i>
-                            <h4 class="font-bold text-white text-sm">SOP & Model Tagging</h4>
-                        </div>
-                        <p class="text-xs text-gray-400 leading-relaxed">Every trade must be tagged (AMT, SMC, PA) to evaluate exactly which strategy is dominating the market.</p>
-                    </div>
-                    <div class="glass-panel p-5 border-l-2 border-l-yellow-500 hover:-translate-y-1 transition-transform md:col-span-2 flex flex-col sm:flex-row items-start sm:items-center gap-4 cursor-default">
-                        <div class="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center border border-yellow-500/20 shrink-0">
-                            <i class="fas fa-images text-yellow-400 text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-white mb-1">Dual-Chart Attachments</h4>
-                            <p class="text-xs text-gray-400 leading-relaxed">Don't just log numbers. Attach <i>Before/After</i> execution screenshots directly into your journal rows for precise weekend reviews.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="reveal w-full relative tilt-element perspective-1000">
-                <div class="absolute -inset-4 bg-green-600/20 blur-2xl rounded-full z-0 pointer-events-none"></div>
-                
-                <div class="glass-3d-card p-1 relative z-10 overflow-hidden h-full flex flex-col items-center justify-center">
-                    <div class="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
-                    
-                    <div class="p-6 w-full flex flex-col items-center justify-center text-center relative z-10">
-                        <div class="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center border border-green-500/30 mb-4 floating-img shadow-[0_0_20px_rgba(34,197,94,0.3)]">
-                            <i class="fas fa-camera-retro text-2xl text-green-400"></i>
-                        </div>
-                        
-                        <h3 class="text-xl font-bold mb-2 text-white">Verified Trade Card</h3>
-                        <p class="text-xs text-gray-400 mb-6">One-Click Export. Flex your PnL with absolute institutional aesthetics.</p>
-                        
-                        <div class="w-full bg-[#0a0a0f] border border-white/10 rounded-2xl p-5 shadow-2xl relative overflow-hidden group cursor-pointer hover:border-green-500/50 transition-colors">
-                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent opacity-50"></div>
-                            
-                            <div class="flex justify-between items-start mb-4">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-8 h-8 rounded-full bg-purple-900/50 border border-purple-500/30 overflow-hidden">
-                                        <img src="https://i.ibb.co.com/Vcw3YxNq/image.png" class="w-full h-full object-cover" alt="Avatar">
-                                    </div>
-                                    <div class="text-left">
-                                        <div class="text-[10px] text-gray-300 font-bold">@RicadSniper</div>
-                                        <div class="text-[8px] text-yellow-500 font-black tracking-widest uppercase bg-yellow-500/10 px-1.5 py-0.5 rounded border border-yellow-500/20 mt-0.5 inline-block">Funded</div>
-                                    </div>
-                                </div>
-                                <div class="text-right">
-                                    <div class="text-xs font-bold text-white">NQ1!</div>
-                                    <div class="text-[9px] text-green-400 border border-green-500/30 bg-green-500/10 px-2 py-0.5 rounded mt-1 font-bold">LONG</div>
-                                </div>
-                            </div>
-                            
-                            <div class="text-left relative z-10">
-                                <div class="text-[10px] text-gray-500 font-bold tracking-widest mb-1">ROI / P&L</div>
-                                <div class="text-3xl font-black text-green-400 drop-shadow-[0_0_10px_rgba(34,197,94,0.4)] group-hover:scale-105 transition-transform origin-left">+ $1,250.00</div>
-                                <div class="text-[11px] text-green-500 font-mono mt-1 font-bold">+12.50%</div>
-                            </div>
-                            
-                            <div class="mt-4 pt-3 border-t border-white/5 flex justify-between items-center">
-                                <div class="text-[8px] text-gray-600 font-black uppercase tracking-[0.2em]">Richardo Journal</div>
-                                <div class="flex items-center gap-1">
-                                    <i class="fas fa-shield-check text-blue-500 text-[10px]"></i>
-                                    <span class="text-[8px] text-blue-400 font-bold uppercase tracking-wider">Verified</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-24 px-6 max-w-7xl mx-auto border-t border-white/10 relative z-20">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-green-900/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
-
-        <div class="reveal glass-panel p-10 md:p-16 text-center rounded-[40px] relative overflow-hidden group">
-            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,197,94,0.08)_0%,transparent_70%)] opacity-50 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-            <div class="absolute inset-0 bg-grid opacity-10 pointer-events-none"></div>
-
-            <div class="relative w-28 h-28 mx-auto mb-10 flex items-center justify-center">
-                <div class="absolute inset-0 bg-green-500/20 rounded-full animate-ping opacity-40" style="animation-duration: 3s;"></div>
-                <div class="absolute inset-2 bg-green-500/20 rounded-full animate-pulse border border-green-500/30"></div>
-                <div class="relative glass-panel w-full h-full rounded-full flex items-center justify-center border-green-500/50 shadow-[0_0_40px_rgba(34,197,94,0.3)] z-10 floating-img">
-                    <i class="fas fa-shield-halved text-5xl text-green-400 drop-shadow-[0_0_15px_rgba(34,197,94,0.6)]"></i>
-                </div>
-            </div>
-
-            <div class="reveal inline-block px-5 py-2 rounded-full border border-green-500/30 bg-green-500/10 text-green-400 text-xs font-black tracking-[0.3em] uppercase mb-6 shadow-[0_0_15px_rgba(34,197,94,0.2)]">
-                Military-Grade Privacy
-            </div>
-
-            <h2 class="text-4xl md:text-5xl lg:text-6xl font-black mb-6 relative z-10 tracking-tighter">Zero-Cloud. <span class="text-gradient">Absolute Control.</span></h2>
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12 xl:px-24 relative z-10">
             
-            <p class="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto mb-16 relative z-10 leading-relaxed">
-                Your setups and trading strategies are the <i>Holy Grail</i> that must never fall into the hands of brokers or competitors. We engineered the <strong>Zero-Telemetry Vault</strong>. Zero external servers. Zero tracking. The entire database is absolutely encrypted within your laptop's local storage.
-            </p>
+            <div class="flex flex-col md:flex-row-reverse items-center gap-16 xl:gap-24">
+                
+                <div class="w-full md:w-1/2">
+                    <div class="reveal inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-[#020005]/60 backdrop-blur-sm text-cyan-400 text-[10px] font-bold tracking-widest uppercase mb-4 shadow-[0_0_15px_rgba(0,229,255,0.2)]">
+                        02 / Portfolio Management
+                    </div>
+                    
+                    <h2 class="reveal text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white drop-shadow-2xl">
+                        Prop-Firm <span class="text-gradient">Ready.</span>
+                    </h2>
+                    
+                    <p class="reveal text-gray-300 text-lg mb-8 leading-relaxed drop-shadow-md">
+                        Bypass the evaluation phase without the stress. This system is explicitly designed to guard your <span class="text-white font-bold drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]">Max Daily Drawdown</span> limits. Manage metrics across Personal, Challenge, and Funded Accounts within a single dashboard like a true Fund Manager.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+                        <div class="reveal glass-panel p-6 hover:-translate-y-1 transition-transform border-l-2 border-l-purple-500 bg-[#020005]/60 backdrop-blur-md shadow-xl">
+                            <i class="fas fa-layer-group text-3xl text-purple-400 mb-4 drop-shadow-[0_0_10px_rgba(168,85,247,0.5)]"></i>
+                            <h4 class="font-bold text-white mb-2">Multi-Account</h4>
+                            <p class="text-sm text-gray-300 leading-relaxed">Segregate the database for every prop-firm account so your trade history remains untainted.</p>
+                        </div>
+                        <div class="reveal glass-panel p-6 hover:-translate-y-1 transition-transform border-l-2 border-l-cyan-500 bg-[#020005]/60 backdrop-blur-md shadow-xl">
+                            <i class="fas fa-shield-halved text-3xl text-cyan-400 mb-4 drop-shadow-[0_0_10px_rgba(0,229,255,0.5)]"></i>
+                            <h4 class="font-bold text-white mb-2">Drawdown HUD</h4>
+                            <p class="text-sm text-gray-300 leading-relaxed">Real-time visual alarms deployed right before you violate your daily loss limits.</p>
+                        </div>
+                    </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10 text-left">
-                <div class="glass-panel p-6 border-t-2 border-t-green-500/50 hover:-translate-y-2 transition-transform duration-300 group/card">
-                    <div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center mb-4 border border-green-500/20 group-hover/card:scale-110 transition-transform">
-                        <i class="fas fa-server text-green-400"></i>
+                    <div class="reveal pt-6 border-t border-white/10 w-full overflow-hidden relative">
+                        <div class="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-[#020005]/90 to-transparent z-10 pointer-events-none"></div>
+                        <div class="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-[#020005]/90 to-transparent z-10 pointer-events-none"></div>
+
+                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] mb-4">Secure Your License Via :</p>
+                        
+                        <div class="flex w-max group/marquee" style="animation: ticker-scroll 30s linear infinite;">
+                            <div class="flex gap-6 items-center px-4">
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-pink-500/50 hover:bg-pink-500/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-qrcode text-pink-500"></i>
+                                    <span class="text-xs font-black tracking-widest text-white">QRIS</span>
+                                </div>
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#00AED6]/50 hover:bg-[#00AED6]/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-wallet text-[#00AED6]"></i>
+                                    <span class="text-xs font-black text-white">gopay</span>
+                                </div>
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#4C3494]/50 hover:bg-[#4C3494]/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-circle-notch text-[#4C3494] font-bold"></i>
+                                    <span class="text-xs font-black text-white italic">OVO</span>
+                                </div>
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#118EEA]/50 hover:bg-[#118EEA]/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-money-check-dollar text-[#118EEA]"></i>
+                                    <span class="text-xs font-black text-white">DANA</span>
+                                </div>
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#EE4D2D]/50 hover:bg-[#EE4D2D]/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-bag-shopping text-[#EE4D2D]"></i>
+                                    <span class="text-xs font-bold text-white">ShopeePay</span>
+                                </div>
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#E32322]/50 hover:bg-[#E32322]/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-link text-[#E32322]"></i>
+                                    <span class="text-xs font-bold text-white">LinkAja</span>
+                                </div>
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#0066AE]/50 hover:bg-[#0066AE]/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-building-columns text-[#0066AE]"></i>
+                                    <span class="text-xs font-bold text-gray-300">BCA VA</span>
+                                </div>
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#F2C000]/50 hover:bg-[#F2C000]/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-building-columns text-[#F2C000]"></i>
+                                    <span class="text-xs font-bold text-gray-300">Mandiri VA</span>
+                                </div>
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#005E6A]/50 hover:bg-[#005E6A]/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-building-columns text-[#005E6A]"></i>
+                                    <span class="text-xs font-bold text-gray-300">BNI VA</span>
+                                </div>
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#00529C]/50 hover:bg-[#00529C]/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-building-columns text-[#00529C]"></i>
+                                    <span class="text-xs font-bold text-gray-300">BRI VA</span>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-6 items-center px-4">
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-pink-500/50 hover:bg-pink-500/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-qrcode text-pink-500"></i>
+                                    <span class="text-xs font-black tracking-widest text-white">QRIS</span>
+                                </div>
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#00AED6]/50 hover:bg-[#00AED6]/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-wallet text-[#00AED6]"></i>
+                                    <span class="text-xs font-black text-white">gopay</span>
+                                </div>
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#4C3494]/50 hover:bg-[#4C3494]/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-circle-notch text-[#4C3494] font-bold"></i>
+                                    <span class="text-xs font-black text-white italic">OVO</span>
+                                </div>
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#118EEA]/50 hover:bg-[#118EEA]/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-money-check-dollar text-[#118EEA]"></i>
+                                    <span class="text-xs font-black text-white">DANA</span>
+                                </div>
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#EE4D2D]/50 hover:bg-[#EE4D2D]/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-bag-shopping text-[#EE4D2D]"></i>
+                                    <span class="text-xs font-bold text-white">ShopeePay</span>
+                                </div>
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#E32322]/50 hover:bg-[#E32322]/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-link text-[#E32322]"></i>
+                                    <span class="text-xs font-bold text-white">LinkAja</span>
+                                </div>
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#0066AE]/50 hover:bg-[#0066AE]/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-building-columns text-[#0066AE]"></i>
+                                    <span class="text-xs font-bold text-gray-300">BCA VA</span>
+                                </div>
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#F2C000]/50 hover:bg-[#F2C000]/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-building-columns text-[#F2C000]"></i>
+                                    <span class="text-xs font-bold text-gray-300">Mandiri VA</span>
+                                </div>
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#005E6A]/50 hover:bg-[#005E6A]/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-building-columns text-[#005E6A]"></i>
+                                    <span class="text-xs font-bold text-gray-300">BNI VA</span>
+                                </div>
+                                <div class="flex items-center gap-2 glass-panel px-4 py-2 rounded-xl border-white/5 hover:border-[#00529C]/50 hover:bg-[#00529C]/10 transition-all cursor-default bg-[#020005]/80 backdrop-blur-md">
+                                    <i class="fas fa-building-columns text-[#00529C]"></i>
+                                    <span class="text-xs font-bold text-gray-300">BRI VA</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="font-bold text-white mb-2">Offline Architecture</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed">The journal remains 100% operational offline. You retain absolute control over your own data flow.</p>
+
                 </div>
-                
-                <div class="glass-panel p-6 border-t-2 border-t-cyan-500/50 hover:-translate-y-2 transition-transform duration-300 group/card" style="transition-delay: 50ms;">
-                    <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center mb-4 border border-cyan-500/20 group-hover/card:scale-110 transition-transform">
-                        <i class="fas fa-microchip text-cyan-400"></i>
+
+                <div class="reveal w-full md:w-1/2 relative tilt-element">
+                    <div class="absolute -inset-4 bg-cyan-600/20 blur-2xl rounded-full z-0 pointer-events-none"></div>
+                    
+                    <div class="absolute -right-4 -top-8 glass-panel px-4 py-2 flex items-center gap-2 rounded-full border-green-500/50 shadow-[0_0_25px_rgba(34,197,94,0.2)] animate-bounce z-30 bg-[#020005]/80 backdrop-blur-md" style="animation-duration: 4s;">
+                        <i class="fas fa-certificate text-green-400"></i>
+                        <span class="text-[10px] font-black text-white uppercase tracking-widest">Funded 100K</span>
                     </div>
-                    <h4 class="font-bold text-white mb-2">HWID DNA Lock</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed">Licenses and databases are biochemically locked to your motherboard. Impossible to pirate, impossible to transfer.</p>
-                </div>
-                
-                <div class="glass-panel p-6 border-t-2 border-t-purple-500/50 hover:-translate-y-2 transition-transform duration-300 group/card" style="transition-delay: 100ms;">
-                    <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4 border border-purple-500/20 group-hover/card:scale-110 transition-transform">
-                        <i class="fas fa-file-shield text-purple-400"></i>
+
+                    <div class="glass-panel p-4 relative z-10 group bg-[#020005]/40 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl">
+                        <div class="mac-image-container relative rounded-xl overflow-hidden shadow-inner">
+                            <div class="bg-[#1a1a24]/90 h-8 flex items-center px-4 gap-2 border-b border-white/5 relative z-20 backdrop-blur-md">
+                                <div class="w-3 h-3 rounded-full bg-[#ff5f56]"></div><div class="w-3 h-3 rounded-full bg-[#ffbd2e]"></div><div class="w-3 h-3 rounded-full bg-[#27c93f]"></div>
+                                <div class="ml-auto text-[10px] text-gray-400 tracking-widest uppercase font-bold">Risk_Manager.exe</div>
+                            </div>
+                            <div class="p-8 bg-[#0a0a0f]/80 h-[350px] flex flex-col gap-6 relative overflow-hidden backdrop-blur-md">
+                                <div class="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
+
+                                <div class="glass-panel p-5 rounded-xl border-l-4 border-l-cyan-400 relative z-10 hover:scale-[1.02] transition-transform bg-white/[0.03]">
+                                    <div class="flex justify-between items-end mb-2">
+                                        <div class="text-xs text-gray-400 font-bold tracking-wider">PROFIT TARGET</div>
+                                        <div class="text-cyan-400 font-mono font-bold">8.0%</div>
+                                    </div>
+                                    <div class="w-full bg-black/60 h-4 rounded-full overflow-hidden shadow-inner border border-white/5">
+                                        <div class="bg-gradient-to-r from-cyan-600 to-cyan-400 h-full rounded-full w-[65%] shadow-[0_0_10px_rgba(0,229,255,0.5)] relative">
+                                            <div class="absolute top-0 right-0 bottom-0 left-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.2)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.2)_50%,rgba(255,255,255,0.2)_75%,transparent_75%,transparent)] bg-[length:20px_20px] animate-[ticker-scroll_2s_linear_infinite]"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="glass-panel p-5 rounded-xl border-l-4 border-l-red-500 relative z-10 hover:scale-[1.02] transition-transform bg-white/[0.03]">
+                                    <div class="flex justify-between items-end mb-2">
+                                        <div class="text-xs text-gray-400 font-bold tracking-wider">DAILY DRAWDOWN</div>
+                                        <div class="text-red-500 font-mono font-bold">2.1% / 5.0%</div>
+                                    </div>
+                                    <div class="w-full bg-black/60 h-4 rounded-full overflow-hidden shadow-inner border border-white/5">
+                                        <div class="bg-gradient-to-r from-red-600 to-red-500 h-full rounded-full w-[42%] shadow-[0_0_10px_rgba(239,68,68,0.5)] relative">
+                                            <div class="absolute top-0 right-0 bottom-0 left-0 bg-[linear-gradient(45deg,rgba(255,255,255,0.2)_25%,transparent_25%,transparent_50%,rgba(255,255,255,0.2)_50%,rgba(255,255,255,0.2)_75%,transparent_75%,transparent)] bg-[length:20px_20px] animate-[ticker-scroll_2s_linear_infinite]"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="font-bold text-white mb-2">Encrypted JSON</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed">Bleeding-edge <i>Backup & Restore</i>. Fully encrypted files, secure enough to be stashed on a flash drive or cold storage.</p>
-                </div>
-                
-                <div class="glass-panel p-6 border-t-2 border-t-red-500/50 hover:-translate-y-2 transition-transform duration-300 group/card" style="transition-delay: 150ms;">
-                    <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center mb-4 border border-red-500/20 group-hover/card:scale-110 transition-transform">
-                        <i class="fas fa-user-secret text-red-400"></i>
-                    </div>
-                    <h4 class="font-bold text-white mb-2">Anti-Telemetry</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed">Zero background tracking. There is not a single line of code designed to transmit your P&L data back to our servers.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section id="export" class="py-24 w-full relative z-20 overflow-hidden">
+        
+        <div class="export-bg">
+            <div class="export-image-layer"></div>
+            <div class="export-overlay-layer"></div>
+        </div>
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12 xl:px-24 relative z-10">
+            
+            <div class="text-center mb-16 relative z-10">
+                <div class="reveal glass-panel !rounded-full px-4 py-1 mb-4 inline-flex items-center gap-2 mx-auto border-green-500/30 bg-[#020005]/60 backdrop-blur-md shadow-[0_0_15px_rgba(34,197,94,0.2)]">
+                    <i class="fas fa-share-nodes text-green-500 text-xs"></i>
+                    <span class="text-[10px] font-bold tracking-[0.2em] text-green-400 uppercase">Social Proof Module</span>
+                </div>
+                <h2 class="reveal text-4xl md:text-5xl font-black mb-4 text-white drop-shadow-2xl">
+                    The Sniper <span class="text-gradient">Execution.</span>
+                </h2>
+                <p class="reveal text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+                    Validate your edge to the world. Our export system transmutes your raw profit data into high-resolution <i>Verified Trade Cards</i>, ready to silence any doubts in your inner circles and social media.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+                
+                <div class="reveal glass-panel p-8 md:col-span-2 relative overflow-hidden group bg-[#020005]/60 backdrop-blur-md shadow-2xl">
+                    <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-purple-600/10 blur-[80px] rounded-full pointer-events-none transition-transform duration-700 group-hover:scale-150"></div>
+                    
+                    <div class="flex items-center gap-4 mb-8 relative z-10">
+                        <div class="w-14 h-14 rounded-2xl bg-[#020005] flex items-center justify-center border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+                            <i class="fas fa-book-journal-whills text-2xl text-purple-400"></i>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-black text-white tracking-tight drop-shadow-md">Smart Trading Journal</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
+                        <div class="glass-panel p-5 border-l-2 border-l-purple-500 hover:-translate-y-1 transition-transform cursor-default bg-white/[0.03]">
+                            <div class="flex items-center gap-3 mb-2">
+                                <i class="fas fa-list-ol text-purple-400 text-lg"></i>
+                                <h4 class="font-bold text-white text-sm">10-Row Pagination</h4>
+                            </div>
+                            <p class="text-xs text-gray-300 leading-relaxed">Immaculate, lag-free UI, rendering 10 rows at a time so the engine stays incredibly light even with thousands of entries.</p>
+                        </div>
+                        <div class="glass-panel p-5 border-l-2 border-l-cyan-500 hover:-translate-y-1 transition-transform cursor-default bg-white/[0.03]">
+                            <div class="flex items-center gap-3 mb-2">
+                                <i class="fas fa-tags text-cyan-400 text-lg"></i>
+                                <h4 class="font-bold text-white text-sm">SOP & Model Tagging</h4>
+                            </div>
+                            <p class="text-xs text-gray-300 leading-relaxed">Every trade must be tagged (AMT, SMC, PA) to evaluate exactly which strategy is dominating the market.</p>
+                        </div>
+                        <div class="glass-panel p-5 border-l-2 border-l-yellow-500 hover:-translate-y-1 transition-transform md:col-span-2 flex flex-col sm:flex-row items-start sm:items-center gap-4 cursor-default bg-white/[0.03]">
+                            <div class="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center border border-yellow-500/30 shrink-0 shadow-[0_0_10px_rgba(234,179,8,0.2)]">
+                                <i class="fas fa-images text-yellow-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white mb-1">Dual-Chart Attachments</h4>
+                                <p class="text-xs text-gray-300 leading-relaxed">Don't just log numbers. Attach <i>Before/After</i> execution screenshots directly into your journal rows for precise weekend reviews.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal w-full relative tilt-element perspective-1000">
+                    <div class="absolute -inset-4 bg-green-600/20 blur-2xl rounded-full z-0 pointer-events-none"></div>
+                    
+                    <div class="glass-3d-card p-1 relative z-10 overflow-hidden h-full flex flex-col items-center justify-center bg-[#020005]/40 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl">
+                        <div class="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
+                        
+                        <div class="p-6 w-full flex flex-col items-center justify-center text-center relative z-10">
+                            <div class="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center border border-green-500/40 mb-4 floating-img shadow-[0_0_20px_rgba(34,197,94,0.4)] backdrop-blur-md">
+                                <i class="fas fa-camera-retro text-2xl text-green-400"></i>
+                            </div>
+                            
+                            <h3 class="text-xl font-bold mb-2 text-white drop-shadow-md">Verified Trade Card</h3>
+                            <p class="text-xs text-gray-300 mb-6 drop-shadow-md">One-Click Export. Flex your PnL with absolute institutional aesthetics.</p>
+                            
+                            <div class="w-full bg-[#0a0a0f]/90 border border-white/10 rounded-2xl p-5 shadow-2xl relative overflow-hidden group cursor-pointer hover:border-green-500/50 transition-colors backdrop-blur-md">
+                                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent opacity-50"></div>
+                                
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-8 h-8 rounded-full bg-purple-900/50 border border-purple-500/30 overflow-hidden">
+                                            <img src="https://i.ibb.co.com/Vcw3YxNq/image.png" class="w-full h-full object-cover" alt="Avatar">
+                                        </div>
+                                        <div class="text-left">
+                                            <div class="text-[10px] text-gray-300 font-bold">@RicadSniper</div>
+                                            <div class="text-[8px] text-yellow-500 font-black tracking-widest uppercase bg-yellow-500/10 px-1.5 py-0.5 rounded border border-yellow-500/20 mt-0.5 inline-block">Funded</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-xs font-bold text-white">NQ1!</div>
+                                        <div class="text-[9px] text-green-400 border border-green-500/30 bg-green-500/10 px-2 py-0.5 rounded mt-1 font-bold">LONG</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="text-left relative z-10">
+                                    <div class="text-[10px] text-gray-500 font-bold tracking-widest mb-1">ROI / P&L</div>
+                                    <div class="text-3xl font-black text-green-400 drop-shadow-[0_0_15px_rgba(34,197,94,0.5)] group-hover:scale-105 transition-transform origin-left">+ $1,250.00</div>
+                                    <div class="text-[11px] text-green-500 font-mono mt-1 font-bold">+12.50%</div>
+                                </div>
+                                
+                                <div class="mt-4 pt-3 border-t border-white/5 flex justify-between items-center">
+                                    <div class="text-[8px] text-gray-600 font-black uppercase tracking-[0.2em]">Richardo Journal</div>
+                                    <div class="flex items-center gap-1">
+                                        <i class="fas fa-shield-check text-blue-500 text-[10px]"></i>
+                                        <span class="text-[8px] text-blue-400 font-bold uppercase tracking-wider">Verified</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 w-full border-t border-white/5 relative z-20 overflow-hidden">
+        
+        <div class="privacy-bg">
+            <div class="privacy-image-layer"></div>
+            <div class="privacy-overlay-layer"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-green-900/10 blur-[150px] rounded-full pointer-events-none mix-blend-screen z-0"></div>
+        </div>
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12 xl:px-24 relative z-10">
+            
+            <div class="reveal glass-panel p-10 md:p-16 text-center rounded-[40px] relative overflow-hidden group bg-[#020005]/60 backdrop-blur-md shadow-[0_0_40px_rgba(34,197,94,0.1)] border-white/10">
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,197,94,0.08)_0%,transparent_70%)] opacity-50 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                <div class="absolute inset-0 bg-grid opacity-20 pointer-events-none"></div>
+
+                <div class="relative w-28 h-28 mx-auto mb-10 flex items-center justify-center">
+                    <div class="absolute inset-0 bg-green-500/20 rounded-full animate-ping opacity-40" style="animation-duration: 3s;"></div>
+                    <div class="absolute inset-2 bg-green-500/20 rounded-full animate-pulse border border-green-500/30"></div>
+                    <div class="relative glass-panel w-full h-full rounded-full flex items-center justify-center border-green-500/50 shadow-[0_0_40px_rgba(34,197,94,0.3)] z-10 floating-img bg-[#020005]/80">
+                        <i class="fas fa-shield-halved text-5xl text-green-400 drop-shadow-[0_0_15px_rgba(34,197,94,0.6)]"></i>
+                    </div>
+                </div>
+
+                <div class="reveal inline-block px-5 py-2 rounded-full border border-green-500/30 bg-[#020005]/80 backdrop-blur-sm text-green-400 text-xs font-black tracking-[0.3em] uppercase mb-6 shadow-[0_0_15px_rgba(34,197,94,0.2)]">
+                    Military-Grade Privacy
+                </div>
+
+                <h2 class="text-4xl md:text-5xl lg:text-7xl font-black mb-6 relative z-10 tracking-tighter drop-shadow-2xl text-white">
+                    Zero-Cloud. <br class="md:hidden"><span class="text-gradient">Absolute Control.</span>
+                </h2>
+                
+                <p class="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto mb-16 relative z-10 leading-relaxed drop-shadow-md">
+                    Your setups and trading strategies are the <i class="text-green-400 font-bold">Holy Grail</i> that must never fall into the hands of brokers or competitors. We engineered the <strong class="text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]">Zero-Telemetry Vault</strong>. Zero external servers. Zero tracking. The entire database is absolutely encrypted within your laptop's local storage.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10 text-left">
+                    <div class="glass-panel p-6 border-t-2 border-t-green-500/50 hover:-translate-y-2 transition-transform duration-300 group/card bg-[#020005]/80 backdrop-blur-md shadow-xl border-white/5">
+                        <div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center mb-4 border border-green-500/30 group-hover/card:scale-110 transition-transform shadow-[0_0_10px_rgba(34,197,94,0.2)]">
+                            <i class="fas fa-server text-green-400"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2 drop-shadow-sm">Offline Architecture</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed">The journal remains 100% operational offline. You retain absolute control over your own data flow.</p>
+                    </div>
+                    
+                    <div class="glass-panel p-6 border-t-2 border-t-cyan-500/50 hover:-translate-y-2 transition-transform duration-300 group/card bg-[#020005]/80 backdrop-blur-md shadow-xl border-white/5" style="transition-delay: 50ms;">
+                        <div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center mb-4 border border-cyan-500/30 group-hover/card:scale-110 transition-transform shadow-[0_0_10px_rgba(0,229,255,0.2)]">
+                            <i class="fas fa-microchip text-cyan-400"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2 drop-shadow-sm">HWID DNA Lock</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed">Licenses and databases are biochemically locked to your motherboard. Impossible to pirate, impossible to transfer.</p>
+                    </div>
+                    
+                    <div class="glass-panel p-6 border-t-2 border-t-purple-500/50 hover:-translate-y-2 transition-transform duration-300 group/card bg-[#020005]/80 backdrop-blur-md shadow-xl border-white/5" style="transition-delay: 100ms;">
+                        <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4 border border-purple-500/30 group-hover/card:scale-110 transition-transform shadow-[0_0_10px_rgba(168,85,247,0.2)]">
+                            <i class="fas fa-file-shield text-purple-400"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2 drop-shadow-sm">Encrypted JSON</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed">Bleeding-edge <i>Backup & Restore</i>. Fully encrypted files, secure enough to be stashed on a flash drive or cold storage.</p>
+                    </div>
+                    
+                    <div class="glass-panel p-6 border-t-2 border-t-red-500/50 hover:-translate-y-2 transition-transform duration-300 group/card bg-[#020005]/80 backdrop-blur-md shadow-xl border-white/5" style="transition-delay: 150ms;">
+                        <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center mb-4 border border-red-500/30 group-hover/card:scale-110 transition-transform shadow-[0_0_10px_rgba(239,68,68,0.2)]">
+                            <i class="fas fa-user-secret text-red-400"></i>
+                        </div>
+                        <h4 class="font-bold text-white mb-2 drop-shadow-sm">Anti-Telemetry</h4>
+                        <p class="text-xs text-gray-400 leading-relaxed">Zero background tracking. There is not a single line of code designed to transmit your P&L data back to our servers.</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
     <div id="tutorial" class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent my-20"></div>
 
-    <section id="tutorial" class="py-24 px-6 max-w-7xl mx-auto relative z-20">
-        <div class="text-center mb-20 relative z-10">
-            <div class="reveal glass-panel !rounded-full px-4 py-1 mb-4 inline-flex items-center gap-2 mx-auto border-purple-500/30 bg-purple-900/10">
-                <i class="fas fa-route text-purple-400 text-xs"></i>
-                <span class="text-[10px] font-bold tracking-[0.2em] text-purple-400 uppercase">Deployment Guide</span>
-            </div>
-            <h2 class="reveal text-4xl md:text-5xl font-black mb-4">How to Get <span class="text-gradient">Started.</span></h2>
-            <p class="reveal text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
-                Our architecture is engineered for plug-and-play. Execute the five tactical steps below to secure your license and establish your local execution base on your Windows machine.
-            </p>
+    <section id="tutorial" class="py-24 w-full relative z-20 overflow-hidden">
+        
+        <div class="tutorial-bg">
+            <div class="tutorial-image-layer"></div>
+            <div class="tutorial-overlay-layer"></div>
         </div>
-
-        <div class="relative">
-            <div class="hidden md:block absolute top-[40%] left-10 right-10 h-0.5 border-t-2 border-dashed border-white/10 z-0"></div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 relative z-10">
-                <div class="reveal glass-panel p-8 relative overflow-hidden group flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300 border-t-2 border-t-purple-500/50">
-                    <div>
-                        <div class="absolute -right-2 -top-6 font-black text-white/5 group-hover:text-purple-500/10 transition-colors duration-500 select-none pointer-events-none" style="font-size: 140px; line-height: 1;">01</div>
-                        <div class="flex items-center gap-4 mb-6 relative z-10">
-                            <div class="w-12 h-12 rounded-xl bg-purple-600/20 flex items-center justify-center text-purple-400 border border-purple-500/30 shrink-0 group-hover:scale-110 transition-transform">
-                                <i class="fab fa-github text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white">Download App</h3>
-                        </div>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-6 relative z-10">
-                            Extract the official <span class="text-purple-400 font-bold">.exe</span> installation file straight from the GitHub repository. The system is 100% clean, transparent, and completely free of malware.
-                        </p>
-                    </div>
-                    <a href="https://github.com/richardojocelyn/richardojournal/releases/download/Application/RichardoEliteJournal-1.2.1-Setup.zip" class="relative z-10 text-xs font-bold text-white bg-purple-900/40 border border-purple-500/50 px-4 py-3 rounded-lg hover:bg-purple-600 transition inline-flex items-center justify-center gap-2 w-max shadow-[0_0_15px_rgba(168,85,247,0.3)]">
-                        <i class="fas fa-download"></i> Get from GitHub
-                    </a>
+        <div class="max-w-[1400px] mx-auto px-6 md:px-12 xl:px-24 relative z-10">
+            
+            <div class="text-center mb-20 relative z-10">
+                <div class="reveal glass-panel !rounded-full px-4 py-1 mb-4 inline-flex items-center gap-2 mx-auto border-purple-500/30 bg-[#020005]/60 backdrop-blur-md shadow-[0_0_15px_rgba(168,85,247,0.2)]">
+                    <i class="fas fa-route text-purple-400 text-xs"></i>
+                    <span class="text-[10px] font-bold tracking-[0.2em] text-purple-400 uppercase">Deployment Guide</span>
                 </div>
-
-                <div class="reveal glass-panel p-8 relative overflow-hidden group flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300 border-t-2 border-t-cyan-500/50" style="transition-delay: 50ms;">
-                    <div>
-                        <div class="absolute -right-2 -top-6 font-black text-white/5 group-hover:text-cyan-500/10 transition-colors duration-500 select-none pointer-events-none" style="font-size: 140px; line-height: 1;">02</div>
-                        <div class="flex items-center gap-4 mb-6 relative z-10">
-                            <div class="w-12 h-12 rounded-xl bg-cyan-600/20 flex items-center justify-center text-cyan-400 border border-cyan-500/30 shrink-0 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-key text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white">Get License</h3>
-                        </div>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-6 relative z-10">
-                            This ecosystem is strictly exclusive. Complete your support via Discord to receive your private *License Key*, unlocking the full capabilities of the application engine.
-                        </p>
-                    </div>
-                    <a href="https://discord.com/users/1186858800905465947" target="_blank" class="bg-gradient-to-r from-purple-600 to-cyan-600 hover:scale-105 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(168,85,247,0.5)] flex items-center gap-2">
-                        <i class="fas fa-key"></i> Get License Key
-                    </a>
-                </div>
-
-                <div class="reveal glass-panel p-8 relative overflow-hidden group flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300 border-t-2 border-t-yellow-500/50" style="transition-delay: 100ms;">
-                    <div>
-                        <div class="absolute -right-2 -top-6 font-black text-white/5 group-hover:text-yellow-500/10 transition-colors duration-500 select-none pointer-events-none" style="font-size: 140px; line-height: 1;">03</div>
-                        <div class="flex items-center gap-4 mb-6 relative z-10">
-                            <div class="w-12 h-12 rounded-xl bg-yellow-600/20 flex items-center justify-center text-yellow-400 border border-yellow-500/30 shrink-0 group-hover:scale-110 transition-transform">
-                                <i class="fas fa-shield-cat text-xl"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white">Bypass SmartScreen</h3>
-                        </div>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-4 relative z-10">
-                            Launch the downloaded `.exe`. If Windows Defender intercepts it, click <b class="text-white">"More info"</b> and select <b class="text-white">"Run anyway"</b>. This is standard protocol for independent applications operating without corporate Microsoft certificates.
-                        </p>
-                    </div>
-                </div>
+                <h2 class="reveal text-4xl md:text-5xl font-black mb-4 text-white drop-shadow-2xl">
+                    How to Get <span class="text-gradient">Started.</span>
+                </h2>
+                <p class="reveal text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed drop-shadow-md">
+                    Our architecture is engineered for plug-and-play. Execute the five tactical steps below to secure your license and establish your local execution base on your Windows machine.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10 md:px-20">
-                <div class="reveal glass-panel p-8 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300 border-t-2 border-t-red-500/50">
-                    <div class="absolute -right-2 -top-6 text-8 font-black text-white/5 group-hover:text-red-500/10 transition-colors duration-500 select-none pointer-events-none" style="font-size: 140px; line-height: 1;">04</div>
-                    <div class="flex items-center gap-4 mb-6 relative z-10">
-                        <div class="w-12 h-12 rounded-xl bg-red-600/20 flex items-center justify-center text-red-400 border border-red-500/30 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-crosshairs"></i>
+            <div class="relative">
+                <div class="hidden md:block absolute top-[40%] left-10 right-10 h-0.5 border-t-2 border-dashed border-purple-500/30 z-0"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 relative z-10">
+                    
+                    <div class="reveal glass-panel p-8 relative overflow-hidden group flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300 border-t-2 border-t-purple-500/50 bg-[#020005]/80 backdrop-blur-md shadow-xl">
+                        <div>
+                            <div class="absolute -right-2 -top-6 font-black text-white/5 group-hover:text-purple-500/10 transition-colors duration-500 select-none pointer-events-none" style="font-size: 140px; line-height: 1;">01</div>
+                            <div class="flex items-center gap-4 mb-6 relative z-10">
+                                <div class="w-12 h-12 rounded-xl bg-purple-600/20 flex items-center justify-center text-purple-400 border border-purple-500/30 shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(168,85,247,0.2)]">
+                                    <i class="fab fa-github text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white drop-shadow-sm">Download App</h3>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-6 relative z-10">
+                                Extract the official <span class="text-purple-400 font-bold drop-shadow-[0_0_3px_rgba(168,85,247,0.5)]">.exe</span> installation file straight from the GitHub repository. The system is 100% clean, transparent, and completely free of malware.
+                            </p>
                         </div>
-                        <h3 class="text-xl font-bold text-white">Bind Identity</h3>
+                        <a href="https://github.com/richardojocelyn/richardojournal/releases/download/Application/RichardoEliteJournal-1.2.1-Setup.zip" class="relative z-10 text-xs font-bold text-white bg-purple-900/40 border border-purple-500/50 px-4 py-3 rounded-lg hover:bg-purple-600 transition inline-flex items-center justify-center gap-2 w-max shadow-[0_0_15px_rgba(168,85,247,0.3)] backdrop-blur-sm">
+                            <i class="fas fa-download"></i> Get from GitHub
+                        </a>
                     </div>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-4 relative z-10">
-                        Input your *License Key* when prompted. The system will automatically lock onto your hardware DNA (*Motherboard & Storage*) to prevent unauthorized duplication. Once locked, your access is permanently secured.
-                    </p>
+
+                    <div class="reveal glass-panel p-8 relative overflow-hidden group flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300 border-t-2 border-t-cyan-500/50 bg-[#020005]/80 backdrop-blur-md shadow-xl" style="transition-delay: 50ms;">
+                        <div>
+                            <div class="absolute -right-2 -top-6 font-black text-white/5 group-hover:text-cyan-500/10 transition-colors duration-500 select-none pointer-events-none" style="font-size: 140px; line-height: 1;">02</div>
+                            <div class="flex items-center gap-4 mb-6 relative z-10">
+                                <div class="w-12 h-12 rounded-xl bg-cyan-600/20 flex items-center justify-center text-cyan-400 border border-cyan-500/30 shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(0,229,255,0.2)]">
+                                    <i class="fas fa-key text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white drop-shadow-sm">Get License</h3>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-6 relative z-10">
+                                This ecosystem is strictly exclusive. Complete your support via Discord to receive your private <i class="text-cyan-400">License Key</i>, unlocking the full capabilities of the application engine.
+                            </p>
+                        </div>
+                        <a href="https://discord.com/users/1186858800905465947" target="_blank" class="relative z-10 text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-cyan-600 hover:scale-105 transition-all duration-300 px-4 py-3 rounded-full border border-cyan-500/50 inline-flex items-center justify-center gap-2 w-max shadow-[0_0_20px_rgba(0,229,255,0.4)]">
+                            <i class="fas fa-key"></i> Get License Key
+                        </a>
+                    </div>
+
+                    <div class="reveal glass-panel p-8 relative overflow-hidden group flex flex-col justify-between hover:-translate-y-2 transition-transform duration-300 border-t-2 border-t-yellow-500/50 bg-[#020005]/80 backdrop-blur-md shadow-xl" style="transition-delay: 100ms;">
+                        <div>
+                            <div class="absolute -right-2 -top-6 font-black text-white/5 group-hover:text-yellow-500/10 transition-colors duration-500 select-none pointer-events-none" style="font-size: 140px; line-height: 1;">03</div>
+                            <div class="flex items-center gap-4 mb-6 relative z-10">
+                                <div class="w-12 h-12 rounded-xl bg-yellow-600/20 flex items-center justify-center text-yellow-400 border border-yellow-500/30 shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(234,179,8,0.2)]">
+                                    <i class="fas fa-shield-cat text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white drop-shadow-sm">Bypass SmartScreen</h3>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-4 relative z-10">
+                                Launch the downloaded <span class="font-mono text-xs bg-white/10 px-1 rounded text-white border border-white/20">.exe</span>. If Windows Defender intercepts it, click <b class="text-white drop-shadow-sm">"More info"</b> and select <b class="text-white drop-shadow-sm">"Run anyway"</b>. This is standard protocol for independent applications operating without corporate Microsoft certificates.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="reveal glass-panel p-8 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300 border-t-2 border-t-green-500/50" style="transition-delay: 50ms;">
-                    <div class="absolute -right-2 -top-6 text-8 font-black text-white/5 group-hover:text-green-500/10 transition-colors duration-500 select-none pointer-events-none" style="font-size: 140px; line-height: 1;">05</div>
-                    <div class="flex items-center gap-4 mb-6 relative z-10">
-                        <div class="w-12 h-12 rounded-xl bg-green-600/20 flex items-center justify-center text-green-400 border border-green-500/30 group-hover:scale-110 transition-transform">
-                            <i class="fas fa-chart-gantt"></i>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10 md:px-20">
+                    
+                    <div class="reveal glass-panel p-8 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300 border-t-2 border-t-red-500/50 bg-[#020005]/80 backdrop-blur-md shadow-xl">
+                        <div class="absolute -right-2 -top-6 text-8 font-black text-white/5 group-hover:text-red-500/10 transition-colors duration-500 select-none pointer-events-none" style="font-size: 140px; line-height: 1;">04</div>
+                        <div class="flex items-center gap-4 mb-6 relative z-10">
+                            <div class="w-12 h-12 rounded-xl bg-red-600/20 flex items-center justify-center text-red-400 border border-red-500/30 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(239,68,68,0.2)]">
+                                <i class="fas fa-crosshairs"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white drop-shadow-sm">Bind Identity</h3>
                         </div>
-                        <h3 class="text-xl font-bold text-white">Execute & Dominate</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-4 relative z-10">
+                            Input your <i class="text-red-400">License Key</i> when prompted. The system will automatically lock onto your hardware DNA (*Motherboard & Storage*) to prevent unauthorized duplication. Once locked, your access is permanently secured.
+                        </p>
                     </div>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-4 relative z-10">
-                        Create your first account profile (Personal/Challenge). Setup your starting capital, define your Max Drawdown, input trade histories, attach visual charts, and monitor your *Win Rate* like a professional institution.
-                    </p>
+
+                    <div class="reveal glass-panel p-8 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300 border-t-2 border-t-green-500/50 bg-[#020005]/80 backdrop-blur-md shadow-xl" style="transition-delay: 50ms;">
+                        <div class="absolute -right-2 -top-6 text-8 font-black text-white/5 group-hover:text-green-500/10 transition-colors duration-500 select-none pointer-events-none" style="font-size: 140px; line-height: 1;">05</div>
+                        <div class="flex items-center gap-4 mb-6 relative z-10">
+                            <div class="w-12 h-12 rounded-xl bg-green-600/20 flex items-center justify-center text-green-400 border border-green-500/30 group-hover:scale-110 transition-transform shadow-[0_0_10px_rgba(34,197,94,0.2)]">
+                                <i class="fas fa-chart-gantt"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white drop-shadow-sm">Execute & Dominate</h3>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-4 relative z-10">
+                            Create your first account profile (Personal/Challenge). Setup your starting capital, define your Max Drawdown, input trade histories, attach visual charts, and monitor your <i class="text-green-400">Win Rate</i> like a professional institution.
+                        </p>
+                    </div>
+                    
                 </div>
             </div>
         </div>
